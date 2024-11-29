@@ -10,12 +10,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Basepair Solutions page',
-  tagline: 'Dinosaurs are very cool',
+  title: 'Basepair Documentation',
+  tagline: 'Documentation for Basepair genomics platform',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://basepair.github.io',
+  url: 'https://docs.basepairtech.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
