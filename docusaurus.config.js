@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Basepair Documentation',
+  title: 'Documentation',
   tagline: 'Documentation for Basepair genomics platform',
   favicon: 'img/favicon.ico',
 
