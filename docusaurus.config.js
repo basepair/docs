@@ -24,7 +24,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'basepair', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  deploymentBranch: "gh-pages", // Deployment branch for GitHub Pages
+  //deploymentBranch: "gh-pages", // Deployment branch for GitHub Pages
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'log',
 
@@ -74,19 +74,19 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/BPonblack500.png',
       navbar: {
         title: 'Basepair Documentation',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/basepair.png',
         },
         items: [
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Knowledge base',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -103,7 +103,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Knowledge base',
                 to: '/docs/intro',
               },
             ],
