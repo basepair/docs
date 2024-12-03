@@ -2,46 +2,24 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting started with Basepair
 
-Let's discover **Basepair test code**.
+Basepair  provides  a  user-friendly  suite  of  bioinformatics  pipelines  that  allow  for  detailed  analysis  of  Next-Generation Sequencing (NGS) data. Industry-standard publicly available tools are streamlined to process raw fastq
+data from a variety of genomic assays including **bulk and single-cell RNA-seq, WGS, WES/panel, ATAC-seq,
+CUT&RUN, CUT&TAG, ChIP-seq, metagenomics** and more!
 
-## Getting Started
+To log into your Basepair account, go to our login page **[here](http://app.basepairtech.com/login)** and type in your username and password.
+![login](/img/login.png)
 
-Get started by **creating a new site**.
+If you need to create a Basepair account, click the **[Sign up](http://app.basepairtech.com/signup)** button
+Basepair organizes your samples and analyses into projects, allowing you to create and edit projects as needed:
+![project](/img/project.png)
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Opening a project makes it your current **active project**, this is where any new samples and analyses will be created.
+Here, the "RNA-seq" project has been opened and summary statistics on both the samples and analyses are provided from the project dashboard:
+![active](/img/active.png)
 
-### What you'll need
+The menu bar at the top of the page allows you to quickly and easily browse your samples, analyses, and projects using the drop-downs. When you first log in to your account, we will automatically create your first project for you, called "Project 1" - feel free to change the name using the "Edit" button on the right side:
+![project1](/img/project1.png)
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Once you have setup your project, the next step is to add samples to it.
