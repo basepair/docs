@@ -11,7 +11,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Documentation',
-  tagline: 'Documentation for Basepair genomics platform',
+  tagline: 'Discover how to execute pipelines, integrate custom workflows, and access the comprehensive Basepair knowledge hub — all in one platform.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -45,9 +45,7 @@ const config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          routeBasePath: '/',
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          routeBasePath: '/'
         },
         blog: false,
         theme: {
@@ -61,9 +59,8 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/BPonblack500.png',
+      image: 'img/basepair.png',
       navbar: {
-        title: 'Docs',
         logo: {
           alt: 'Basepair',
           src: 'img/basepair.png',
@@ -71,17 +68,10 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'docsSidebarId',
             position: 'left',
-            label: 'Knowledge base',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
+            label: 'Docs',
+          }],
       },
       footer: {
         style: 'dark',
