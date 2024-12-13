@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Documentation',
+  title: 'Basepair Docs',
   tagline: 'Discover how to execute pipelines, integrate custom workflows, and access the comprehensive Basepair knowledge hub — all in one platform.',
   favicon: 'img/favicon.ico',
 
