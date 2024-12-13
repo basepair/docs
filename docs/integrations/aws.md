@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-# Getting started with AWS Connected Cloud
+# AWS
 
 - Connected Cloud is a solution that allows you to run NSG workflows on Basepair platform with your own AWS account.
 - Customer will interact with Basepair platform to upload samples and start workflows.
