@@ -1,8 +1,10 @@
 ---
+title: AWS
 sidebar_position: 1
+description: Connected cloud - use your cloud account for storage and compute
 ---
 
-# AWS
+# Connected Cloud - AWS integration
 
 - Connected Cloud is a solution that allows you to run NSG workflows on Basepair platform with your own AWS account.
 - Customer will interact with Basepair platform to upload samples and start workflows.
