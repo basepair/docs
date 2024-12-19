@@ -37,10 +37,8 @@ App->>User: Display Results
 Steps to deploy Connected Cloud with your AWS account:
 
 - Sign in to your AWS account.
-- Deploy the Connected Cloud stack using the following CloudFormation templates:
-  - If you want to use `Connected cloud with Health Omics`, go to the following link and follow the instructions. [Connected Cloud with Health Omics](https://console.aws.amazon.com/cloudformation/home?region=region#/stacks/new?stackName=BasepairConnectedCloud&templateURL=https://bp-publc.s3.amazonaws.com/cfn-mp-ql-basepair-ngs-ho-payg.yml)
-  - If you want to use `Connected cloud with Basepair`, go to the following link and follow the instructions. [Connected Cloud with Basepair](https://console.aws.amazon.com/cloudformation/home?region=region#/stacks/new?stackName=BasepairConnectedCloud&templateURL=https://bp-publc.s3.amazonaws.com/cfn-mp-ql-basepair-ngs-payg.yml)
-- You will be asked to choose the following parameters:
+- To deploy the Connected Cloud in your aws account, please reach out to basepair support team for the CloudFormation template.
+- Once you have the cloudformation template, you will be asked to choose the following parameters:
   - `AWS Region`: Choose the region where you want to deploy the stack.
 - Once the stack is deployed, go to the Outputs tab and note down the `Key` and `Value` of all the parameters into a `config.json` file.
 - Send the `config.json` file to Basepair support team.
