@@ -29,9 +29,11 @@ Here, the **_"RNA-seq"_** project has been opened and summary statistics on both
 
 ---
 ## Navigation
-The menu bar at the top of the page allows you to quickly and easily browse your samples, analyses, and projects using the drop-downs. When you first log in to your account, we will automatically create your first project for you, called **"Project 1"** - feel free to change the name using the _Edit_ button on the right side:
+The menu bar at the top of the page allows you to quickly and easily browse your samples, analyses, and projects using the drop-downs. When you first log in to your account, we will automatically create your first project for you, called **"Project 1"**
+:::tip
+feel free to change the name using the _Edit_ button on the right side:
 ![project1](/img/project1.png)
-
+:::
 ---
 :::note Up next
 Once you have setup your project, the next step is to add samples to it.
