@@ -7,24 +7,24 @@ sidebar_position: 1
 
 Basepair  provides  a  user-friendly  suite  of  bioinformatics  pipelines  that  allow  for  detailed  analysis  of  Next-Generation Sequencing (NGS) data. Industry-standard publicly available tools are streamlined to process raw fastq
 data from a variety of genomic assays including **bulk and single-cell RNA-seq, WGS, WES/panel, ATAC-seq,
-CUT&RUN, CUT&TAG, ChIP-seq, metagenomics** and more
+CUT&RUN, CUT&TAG, ChIP-seq, metagenomics** and more!
 
 ---
 ## Log in to your Basepair account
-To log into your Basepair account, go to our login page **[here](http://app.basepairtech.com/login)** and type in your username _(email)_ and password:
+To log into your Basepair account, go to the login page **[here](http://app.basepairtech.com/login)** and type in your username _(email)_ and password:
 ![login](/img/login.png)
 :::tip
-If you need to create a Basepair account, click the **[Sign up](http://app.basepairtech.com/signup)** button.
+To create a Basepair account, click on the **[Sign up](http://app.basepairtech.com/signup)** button.
 :::
 ---
 ## Projects
-Basepair organizes your samples and analyses into projects, allowing you to create and edit projects as needed:
+Basepair organizes your samples and analyses into projects, allowing you to manage your data and collaborate with your colleagues:
 ![project](/img/project.png)
 
 ---
 ### Active project
 Opening a project makes it your current **active project**, this is where any new samples and analyses will be created.
-Here, the **_"RNA-seq"_** project has been opened and summary statistics on both the samples and analyses are provided from the project dashboard:
+Here, the **_"RNA-seq"_** project has been opened and summary of both the samples and analyses are provided:
 ![active](/img/active.png)
 
 ---
