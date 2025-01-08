@@ -3,4 +3,4 @@ position: 3
 link:
   type: generated-index
   slug: /analysis
-  description: Running a new analysis <GUI/CLI/Python>
+  description: How to run a new analysis
