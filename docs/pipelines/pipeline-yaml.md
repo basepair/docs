@@ -6,7 +6,7 @@ sidebar_position: 3
 
 You may configure the pipeline parameters in a YAML file.
 
-- validation `Validations to be performed before running an analysis`
+- validation `Validations to be performed before even creating an analysis`
   - optional `Optional validation, user will get an option to ignore warnings`
   - required `Requred validation, user will not be able to start analysis`
 
