@@ -35,12 +35,8 @@ This will:
 ## Contribution Guidelines
 
 ### Workflow for Editing Pages
-1. Branch Creation
- - Create a new branch from the dev branch for your changes.
-2. Implement Changes
- - Make the necessary updates or additions.
-3. Commit and Push
- - Commit your changes and push the branch to the repository.
-4. Pull Request
- - Open a pull request to merge your changes into the dev branch. Ensure the pull request includes a clear description of the changes.
-
+1. Create a new branch from the _dev_ branch for your changes.
+2. Make the necessary changes.
+3. Commit your changes and push the branch to the repository.
+4. Open a pull request to merge your changes into the _dev_ branch, get it reviewed. Ensure the pull request includes a clear description of the changes.
+5. Changes will go to _dev_ branch. Occasionally merge _dev_ to _main_
