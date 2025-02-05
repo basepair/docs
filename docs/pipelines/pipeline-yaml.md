@@ -8,7 +8,7 @@ You may configure the pipeline parameters in a YAML file.
 
 - validation `Validations to be performed before even creating an analysis`
   - optional `Optional validation, user will get an option to ignore warnings`
-  - required `Requred validation, user will not be able to start analysis`
+  - required `Required validation, user will not be able to start analysis`
 
 Here are a list of possible validations and accepted values. These validations
 maybe added to either the optional or required sections.
@@ -16,7 +16,7 @@ maybe added to either the optional or required sections.
 - datatype `accepts multiple values as list, e.g, rna-seq, chip-seq, etc`
 - filetypes `accepts multiple values as list, e.g, bam, fastq, etc`
 - genome `if true, all samples must have a genome set`
-- num_samples `number of samples accepted by the pipeline, possible values are 0, 1 (exactly 1), 1+ (one or more), etc.`
+- num_samples `number of samples accepted by the pipeline, possible values are 0, 1 (exactly 1) and 1+ (one or more).`
 - num_controls `number of controls accepted by the pipeline, possible values are same as num_samples.`
 
 
