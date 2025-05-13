@@ -19,7 +19,7 @@ title: Billing
         <br />
     ![billing-account-list-page](/img/billing-account-list-page.png)
 
-    - To view its details, click on the **Billing account name**. **Note**: The Members tab has been removed from this page and is now available on the Team Details page.
+    - To view its details, click on the **Billing account name**. **Note**: The Members tab has been removed from this page and is now available on the team Details page.
         <br />
     ![billing-account-detail-page](/img/billing-account-detail-page.png)
 

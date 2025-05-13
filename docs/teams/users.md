@@ -6,7 +6,7 @@ title: Users
 # Manage teams and users
 
 - ## Steps to create a team:
-    - Click on the Team option in the profile menu.
+    - Click on the team option in the profile menu.
         <br />
     ![teams-option-in-profile-menu](/img/teams-option-in-profile-menu.png)
 
@@ -15,22 +15,22 @@ title: Users
     ![team-create-button](/img/team-create-button.png)
 
     - In the dialogue box:
-        - Enter the Team Name(Mandatory) and Description(Optional)
+        - Enter the team Name(Mandatory) and Description(Optional)
         - Select a Billing Account(if applicable)
         - Click “Create” to create a team.
             <br />
     ![team-create-dialog-box](/img/team-create-dialog-box.png)
 
-    - A confirmation message will indicate successful Team creation.
+    - A confirmation message will indicate successful team creation.
         <br />
     ![teams-list-page](/img/teams-list-page.png)
 
-    - Click on the Team name or Team ID to view detailed team information.
+    - Click on the team name or team ID to view detailed team information.
         <br />
     ![team-detail-page](/img/team-detail-page.png)
 
 - ## Steps to add a new member to a team:
-    - Navigate to the Team Details Page and go to the  Members tab.
+    - Navigate to the team Details Page and go to the  Members tab.
         <br />
     ![team-members-tab-on-detail-page](/img/team-members-tab-on-detail-page.png)
 
