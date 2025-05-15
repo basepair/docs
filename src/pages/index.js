@@ -6,6 +6,8 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
+import { useHistory } from '@docusaurus/router';
+import { useEffect, useState } from 'react';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -30,6 +32,24 @@ function HomepageHeader() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+  const history = useHistory();
+  const [shouldRenderContent, setShouldRenderContent] = useState(false);
+
+  useEffect(() => {
+    const alreadyVisited = sessionStorage.getItem('alreadyVisited');
+
+    if (!alreadyVisited) {
+      sessionStorage.setItem('alreadyVisited', 'true');
+      history.replace('/intro');
+    } else {
+      setShouldRenderContent(true); // Show homepage on repeat visits
+    }
+  }, []);
+
+  if (!shouldRenderContent) {
+    return null; // Prevent flicker before redirect or render
+  }
+
   return (
     <Layout
       title={`Basepair ${siteConfig.title}`}

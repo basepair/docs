@@ -1,6 +1,9 @@
 label: Teams
 position: 5
 link:
-  type: generated-index
-  slug: /teams
-  description: Manage team and users
+  type: doc
+  id: teams/feature-overview
+# label: Teams
+# position: 5
+# link:
+#   type: doc
