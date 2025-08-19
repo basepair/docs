@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 
-# How to Upload a Sample to Basepair
+# Upload local
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/gVDmHGulM0Q" frameborder="0" allowfullscreen></iframe>
 

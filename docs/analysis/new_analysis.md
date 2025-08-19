@@ -1,5 +1,6 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
+title: New analysis
 ---
 
 # How to Run a New Analysis on Basepair

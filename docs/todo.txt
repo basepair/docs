@@ -1,0 +1,4 @@
+merge:
+- import from local, upload from local
+
+- new analysis, start new analysis
