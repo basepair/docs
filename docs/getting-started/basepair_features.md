@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# How to add paired-end data to Basepair
+# A Brief Overview of Basepair's Features
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uvYfPc9X3MI" frameborder="0" allowfullscreen></iframe>

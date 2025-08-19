@@ -19,11 +19,10 @@ Select the files you want to upload from your computer. Basepair usually sorts t
 Next, select the appropriate metadata for your samples and click **Upload** to start the process.
 
 ---
-
 ### Common mistakes
 
-1. **Splitting one sample into multiple samples**  
-   Don’t separate different FASTQ files from the same sample into different samples—drag and drop them into a single sample section instead.
+Now that you know how to upload samples with multiple files to Basepair, let's look at two common mistakes people make.
 
-2. **Treating technical replicates as a single sample**  
-   Only group files that truly belong to one biological sample. If you combine separate technical replicates into one sample, Basepair will merge them, leading to incorrect analysis results.
+One common mistake people make is they split multiple FASTQ files into separate samples. Here's what you should NOT do. Instead, you'll want to drag and drop these into one sample section.
+
+Another common mistake people make is when they treat technical replicates as a single sample. Make sure that when you're uploading multiple files to Basepair, that they are actually part of a single sample, and not, for example, two or three separate technical replicates. If you have replicates but upload those files as part of a single sample, all those files will be treated as a single sample by the software and merged together. This will give you incorrect analysis results.
