@@ -6,3 +6,5 @@ sidebar_position: 4
 # Managing Projects
 
 # Sharing Data with Collaborators
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gxwTNTHyoCc" frameborder="0" allowfullscreen></iframe>

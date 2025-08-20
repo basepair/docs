@@ -1,7 +1,9 @@
 ---
 sidebar_position: 15
+title: Custom genome
 ---
-# Uploading a custom genome
+
+# Adding a custom genome
 
 If your genome of interest is not currently available on Basepair, you can create it by uploading **both** a FASTA file and a GTF or refflat file. We’ll incorporate them automatically into downstream analyses.
 

@@ -1,10 +1,9 @@
 ---
 sidebar_position: 6
+title: Collaboration
 ---
 
-# How To Share Data With Collaborators On Basepair
-
-
+# How To Share Data With Collaborators
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/32SPz-lNj7A" frameborder="0" allowfullscreen></iframe>
 

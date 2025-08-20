@@ -1,9 +1,5 @@
 label: Teams
-position: 5
+position: 4
 link:
   type: doc
   id: teams/feature-overview
-# label: Teams
-# position: 5
-# link:
-#   type: doc
