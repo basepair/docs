@@ -3,4 +3,4 @@ position: 5
 link:
   type: generated-index
   slug: /pipelines
-  description: how basepair has standard pipelines
+  description: Many commonly used best-practices piplines are available for a variety of genomic assays including bulk and single-cell RNA-seq, WGS, WES/panel, ATAC-seq, CUT&RUN, CUT&TAG, ChIP-seq, metagenomics and more! Users may add their own custom pipelines as well.
