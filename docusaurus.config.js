@@ -71,7 +71,11 @@ const config = {
             sidebarId: 'docsSidebarId',
             position: 'left',
             label: 'Docs',
-          }],
+          },
+          {
+            href: 'https://app.basepairtech.com/api/v3/swagger-ui/',
+            label: 'REST API',
+        }],
       },
       footer: {
         style: 'dark',
