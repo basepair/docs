@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Custom pipeline – user guide
+# Custom pipeline
 
 ### Introduction
 
@@ -49,8 +49,9 @@ The list page is typically divided into:
 
 ### Creating a pipeline
 
-**Step 1 - pipeline details
-When creating a new custom pipeline, you must first provide its basic details.
+**Step 1 - Pipeline Details**
+
+    When creating a new custom pipeline, you must first provide its basic details.
 
 - **Name**
     - Enter a unique pipeline name.
@@ -86,7 +87,7 @@ When creating a new custom pipeline, you must first provide its basic details.
 
 ### Designing the pipeline graph
 
-#### Step 2 - adding modules
+#### Step 2 - Adding Modules
 - By default, a non-deletable Start, Stop and Save module is placed.
 - Drag Modules to insert a drop space.
 - Search and select a module from the library.
@@ -94,7 +95,7 @@ When creating a new custom pipeline, you must first provide its basic details.
 
     ![custom-pipeline-graph](/img/custom-pipeline-graph.png)
 
-#### Step 3 - configuring module parameters
+#### Step 3 - Configuring Module Parameters
 
 **Open the graph form panel**
 - Click on a module in the pipeline graph.
