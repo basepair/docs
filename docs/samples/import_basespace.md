@@ -32,7 +32,7 @@ sidebar_position: 3
     Choose the BaseSpace data region (e.g., US, EU) from which you want to import biosamples.
     ![select-region](/img/select-region.png)
 
-    #### Choose Source
+    #### Step 3: Choose Source
     You can import biosamples:
         - From Projects, or
         - From Runs
