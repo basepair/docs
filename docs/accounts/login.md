@@ -1,6 +1,6 @@
 ---
 title: Login
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Log in to your Basepair account
