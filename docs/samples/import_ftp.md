@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Overview:
     You can import samples or files directly from your FTP server into the Basepair platform. This feature allows you to easily transfer data for analysis without manual uploads.
 
-- ## Prerequisites
+- ## Pre-requisites
     Before starting, ensure you have:
     - Valid FTP access credentials (FTP host, username, and password).
     - Read permissions for the source directories and files on the FTP server.
@@ -19,11 +19,13 @@ sidebar_position: 3
     - ### Step 1: Navigate to Import from FTP
         - Go to the **Samples** dropdown menu.
         - Click on **Import from FTP**.
+
         ![import-from-ftp-dropdown-option](/img/import-from-ftp-dropdown-option.png)
     
     - ### Step 2: Log in to FTP
         - Enter your **FTP host, username, and password**
         - Click **Login**.
+
         ![ftp-login-modal](/img/ftp-login-modal.png)
 
     - ### Step 3: Select Files to Import
@@ -56,10 +58,13 @@ sidebar_position: 3
         After the upload is complete:
             - Go to the **Reports** section.
             - You will see the uploaded files grouped according to your chosen grouping option.
+
             ![ftp-analysis-report-page](/img/ftp-analysis-report-page.png)
             - Click on the **Basepair ID** to trigger the analysis.
+
             ![ftp-sample-analyze-button](/img/ftp-sample-analyze-button.png)
             - Click **Start Analysis** it will redirect to the new analysis page to begin processing your samples.
+
             ![ftp-run-analysis](/img/ftp-run-analysis.png)
             - Select the Pipeline and the samples.
             - Click on “**Run analysis**”
