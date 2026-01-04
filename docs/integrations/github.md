@@ -108,56 +108,6 @@ You can install the Basepair GitHub App either at the Organization level or the 
     | **Permissions** | Requires organization-level approval for selected repositories. | Requires personal authorization for selected repositories. |
 
 
-# Github Integration: Running an analysis:
-
-
-### Step 1: Modify your custom module
-
-Before you start using your private repository, you must clone it. Being a private repository, it cannot be cloned like a public repo (shown below):
-
-```bash
-# clone public repo
-$ git clone <url-of-public-repo>
-```
-
-To clone private repo: 
-
-```bash
-$ python3.8 /home/ec2-user/bioinfo/infra/repository/github_integration.py --url https://github.com/test-org-amiay/test-repo --clonedir {{basedir}}/test-repo --branch main
-```
-
-`--url` : URL of the github Repository
-
-`--clonedir` : location on the machine where you want to copy the repo; typically `{{basepair}}/<name_of_your_repo>`
-
-`--branch` : Branch that you want to clone
-
-
-This step can be done on the create page (or edit) of the module, as shown below in the image.
-
-![Images](images/Github_run_1.png)
-
-To go to the create a new module, visit https://\<basepair-url\>/modules/new
-
-To edit an already existing module: visit https:///\<basepair-url\>/modules/ and the search for your module using the search feature as shown below
- 
-![Images](images/Github_run_2.png)
-
-
-### Step 2: Add `basedir` mapping
-
-The module that you created would be a part of a pipeline. Navigate to the edit section of the pipeline.
-
-![Images](images/Github_run_3.png)
-
-
-In the `Map platform params` section (right side of the above image), add the mapping as shown
-
-`basedir` : `compute_basedir` 
-
-### Step 3: Run an Analysis using the new Pipeline
-
-![Images](images/Github_run_4.png)
 
 
 
