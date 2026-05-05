@@ -5,6 +5,8 @@ title: Teams - Feature Overview
 
 Basepair users can establish teams through the team feature to create and control their collaborating groups in the platform. The team feature provides teams a space to include projects alongside members and billing accounts to facilitate efficient department and user cross-team collaboration.
 
+![users_teams_projects_billing.svg](/img/users_teams_projects_billing.svg)
+
 ## Why is it needed?
 The new feature introduced a structured team-based model, which took over the user-centric format that previously existed. The team function establishes enhanced organisation alongside user permission control as well as cost management capabilities that multi-user facilities like laboratories and organizations need.The team-based organizational model helps Basepair better alignment between users, projects, and billing.
 
