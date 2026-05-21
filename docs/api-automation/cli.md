@@ -4,51 +4,67 @@ sidebar_position: 2
 
 # Command line API
 
+Updated for basepair version 3.x
 
+Command-line (CLI) bindings for Basepair's API. The CLI is a thin wrapper around the Python bindings, which are more fully-featured. If you can't accomplish something with the CLI, check the [Python API](./python) instead.
 
-Updated for basepair version 2.0.0  
+All commands follow the pattern:
 
-Command-line (CLI) bindings for Basepair’s API. The CLI bindings are just a thin wrapper around the Python bindings, which are more fully-featured. If you can’t do something with the CLI, check the Python API instead.
+```bash
+basepair <resource> <action> [options] -c /path/to/basepair.config.json
+```
 
 An outline of the contents on this page:
 
-1. Creating a project  
-2. Creating a sample  
-3. Running an analysis  
-4. Downloading results  
+1. Creating a project
+2. Creating a sample
+3. Running an analysis
+4. Downloading results
+5. Managing pipelines and modules
+6. Other commands
 
 ---
 
 ## 1. Creating a project
 
-First, list your existing projects. A new Basepair account starts with two projects—one with example data and an empty **Project 1**:
+List your existing projects:
 
 ```bash
 basepair project list -c /path/to/basepair.config.json
 ```
 
 ```text
-id   name          owner        fullname          last updated                visibility
----- ------------  -----------  ----------------  --------------------------  -----------
- 784 Example Data  Amit Sinha   2022-03-11T14:01:19.850152  public
-8611 Project 1     Username     2022-05-15T19:20:06.378477  private
+id     name          owner               last updated
+------ ------------- ------------------- --------------------------
+   784 Example Data  user@example.com    2022-03-11T14:01:19
+  8611 Project 1     user@example.com    2022-05-15T19:20:06
 ```
 
-Now, create a new project:
+Create a new project (requires a team ID, visible in your account settings):
 
 ```bash
-basepair project create --name new_project -c /path/to/basepair.config.json
+basepair project create --name my_project --team 1234 -c /path/to/basepair.config.json
 ```
 
 ```text
 created: project with id 8658
 ```
 
+Share a project with a collaborator:
+
+```bash
+basepair project update -u 8658 --team 1234 \
+  --emails collaborator@example.com --perm view \
+  -c /path/to/basepair.config.json
+```
+
+Permission levels: `view`, `edit`, `admin`.
+
 ---
 
 ## 2. Creating a sample
 
-Create a sample within your new project, specifying the sample name, data type, genome, and file locations:
+Create a sample within your project, specifying the sample name, data type, genome, and file locations:
 
 ```bash
 basepair sample create --project 8658 \
@@ -70,11 +86,13 @@ Creating upload read_2.fastq.gz
 Sample created successfully.
 ```
 
-To see all available data types and other metadata:
+To see all available data types:
 
 ```bash
 basepair sample create -h
 ```
+
+Supported types: `atac-seq`, `chip-seq`, `crispr`, `cutnrun`, `cutntag`, `dna-seq`, `other`, `panel`, `rna-seq`, `scaleBio_scRNA`, `scrna-seq`, `small-rna-seq`, `snap-chip`, `wes`, `wgs`.
 
 To list available genomes:
 
@@ -82,17 +100,29 @@ To list available genomes:
 basepair genome list -c /path/to/basepair.config.json
 ```
 
-You can check the samples in a project with:
+List all samples in a project:
 
 ```bash
 basepair sample list --project 8658 -c /path/to/basepair.config.json
+```
+
+Get details for a specific sample:
+
+```bash
+basepair sample get -u 75042 -c /path/to/basepair.config.json
+```
+
+Update a sample (e.g. change genome or data type):
+
+```bash
+basepair sample update -u 75042 --genome hg38 -c /path/to/basepair.config.json
 ```
 
 ---
 
 ## 3. Running an analysis
 
-Run an analysis—here, ATAC-seq alignment with Bowtie 2—by specifying the project, sample, and pipeline:
+Run an analysis by specifying the project, sample, and pipeline:
 
 ```bash
 basepair analysis create --project 8658 \
@@ -111,17 +141,55 @@ To list all available pipelines:
 basepair pipeline list -c /path/to/basepair.config.json
 ```
 
+Run a differential-expression analysis with multiple samples and controls:
+
+```bash
+basepair analysis create \
+  --sample 75042 75043 75044 \
+  --control 75050 75051 \
+  --pipeline 8 \
+  -c /path/to/basepair.config.json
+```
+
+Override per-node parameters (format: `node_id:argument:value`):
+
+```bash
+basepair analysis create \
+  --sample 75042 \
+  --pipeline 8 \
+  --params deseq2:padj:0.01 deseq2:lfc:1.5 \
+  -c /path/to/basepair.config.json
+```
+
+List analyses in a project:
+
+```bash
+basepair analysis list --project 8658 -c /path/to/basepair.config.json
+```
+
+Restart a completed or failed analysis:
+
+```bash
+basepair analysis reanalyze -u 91182 -c /path/to/basepair.config.json
+```
+
+Stop a running analysis:
+
+```bash
+basepair analysis terminate -u 91182 -c /path/to/basepair.config.json
+```
+
 ---
 
 ## 4. Downloading results
 
-Download the entire analysis directory tree and all files for a given analysis ID:
+Download all files for a given analysis:
 
 ```bash
 basepair analysis download -u 91182 -c /path/to/basepair.config.json
 ```
 
-To download only the alignment BAM and BAM index files (tagged **dedup**) and their directory tree:
+Download only the deduplicated alignment BAM files (tagged **dedup**):
 
 ```bash
 basepair analysis download -u 91182 \
@@ -130,19 +198,93 @@ basepair analysis download -u 91182 \
   -c /path/to/basepair.config.json
 ```
 
+Download only BAM files, saving to a specific directory:
+
+```bash
+basepair analysis download -u 91182 \
+  --tags bam \
+  --tagkind exact \
+  -o ./bams \
+  -c /path/to/basepair.config.json
+```
+
+Download everything except log files:
+
+```bash
+basepair analysis download -u 91182 \
+  --tags log \
+  --tagkind diff \
+  -c /path/to/basepair.config.json
+```
+
+**Tag filter modes:**
+
+| Mode | Behaviour |
+|------|-----------|
+| `exact` | Only files whose tag set exactly matches the provided tags |
+| `subset` | Any file that has at least one of the provided tags |
+| `diff` | Exclude files that have the provided tag |
+
 To list all files of an analysis with their tags:
 
 ```bash
 basepair analysis get -u 91182 -c /path/to/basepair.config.json
 ```
 
-To download only the heatmaps and bigWig track from an analysis:
+Download the execution log:
 
 ```bash
-basepair analysis download -u 90747 \
-  --tags png igv \
-  --tagkind subset \
-  -c /path/to/basepair.config.json
+basepair analysis download-log -u 91182 -o ./logs -c /path/to/basepair.config.json
 ```
 
+---
 
+## 5. Managing pipelines and modules
+
+Create a pipeline from a YAML definition file:
+
+```bash
+basepair pipeline create --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
+```
+
+Update an existing pipeline:
+
+```bash
+basepair pipeline update -u 380 --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
+```
+
+Create a module:
+
+```bash
+basepair module create --file /path/to/module.yaml -c /path/to/basepair.config.json
+```
+
+List modules for a pipeline:
+
+```bash
+basepair module list --pipeline 19 -c /path/to/basepair.config.json
+```
+
+---
+
+## 6. Other commands
+
+**Get JSON output** — add `--json` to any `get` or `list` command:
+
+```bash
+basepair analysis list --project 8658 --json -c /path/to/basepair.config.json
+basepair sample get -u 75042 --json -c /path/to/basepair.config.json
+```
+
+**Download a file by ID:**
+
+```bash
+basepair file download -u 456789 -o ./downloads -c /path/to/basepair.config.json
+```
+
+**Delete resources:**
+
+```bash
+basepair analysis delete -u 91182 -c /path/to/basepair.config.json
+basepair sample delete -u 75042 -c /path/to/basepair.config.json
+```

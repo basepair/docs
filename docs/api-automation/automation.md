@@ -8,7 +8,7 @@ With Basepair, you can fully automate an NGS project—create a project, add mul
 
 0. **Sign in** to your Basepair account → `https://{domain}/`
 
-1. **Download your API keys** from `https://{domain}/api/v3/users/api_key/` and save the path of the downloaded file in an environment variable  
+1. **Download your API config** from `https://{domain}/api/v3/users/api_key/` and point to it via an environment variable  
    *(You must be logged in to download the JSON file.)*
 
    ```bash
@@ -24,30 +24,32 @@ With Basepair, you can fully automate an NGS project—create a project, add mul
 3. **Create a new project** for this data (note the returned project ID)
 
    ```bash
-   basepair create project --name desired_project_name
+   basepair project create --name desired_project_name --team <team_id>
    ```
 
 4. **Add your samples** (note each sample ID)
 
    ```bash
-   basepair create sample --name Treat_1   --genome hg19 --datatype rna-seq \
+   basepair sample create --name Treat_1   --genome hg19 --type rna-seq \
      --file1 /path/to/file1_R1.fq.gz --file2 /path/to/file1_R2.fq.gz
 
-   basepair create sample --name Control_1 --genome hg19 --datatype rna-seq \
+   basepair sample create --name Control_1 --genome hg19 --type rna-seq \
      --file1 /path/to/file2_R1.fq.gz --file2 /path/to/file2_R2.fq.gz
 
    # <add all your other samples>
    ```
 
-5. **Run differential-expression analysis** (workflow # 8) using the sample and control IDs from step 4
+5. **Run differential-expression analysis** (pipeline ID 8) using the sample and control IDs from step 4
 
    ```bash
-   basepair create analysis -w 8 --sample 30754 30755 30756 --control 30757 307587 30759
+   basepair analysis create --pipeline 8 \
+     --sample 30754 30755 30756 \
+     --control 30757 30758 30759
    ```
 
 6. **Share the project** with another user (example: give *edit* permission; you can also use *view* or *admin*)
 
    ```bash
-   basepair updateProject -p 1926 --emails amit@basepairtech.com --perm edit
+   basepair project update -u 1926 --team <team_id> \
+     --emails collaborator@example.com --perm edit
    ```
-
