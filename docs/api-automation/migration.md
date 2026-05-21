@@ -102,7 +102,34 @@ s3_key = S3Driver.get_path_from_uri(f['uri'])
 
 ---
 
-## 5. Downloads no longer require local AWS credentials
+## 5. Update direct class usage
+
+If you use individual module classes (`Analysis`, `Sample`, `Upload`, etc.) directly rather than through `basepair.connect()`, the config key you pass must match the API version.
+
+**Before (v2 config):**
+
+```python
+config = json.load(open('basepair.config.json'))
+Analysis(config.get('api')).list_all_full(filters={...})
+```
+
+**After (v3 config):**
+
+```python
+config = json.load(open('basepair.config.json'))
+Analysis(config.get('api_v3')).list_all_full(filters={...})
+```
+
+Alternatively, connect via `basepair.connect()` and use `bp.conf.get('api')`, which always holds the resolved config regardless of version:
+
+```python
+bp = basepair.connect(json.load(open('basepair.config.json')))
+Analysis(bp.conf.get('api')).list_all_full(filters={...})
+```
+
+---
+
+## 6. Downloads no longer require local AWS credentials
 
 In v3, sample and analysis downloads work via server-generated presigned URLs. You no longer need AWS credentials configured locally to download results. The SDK handles this automatically and falls back to `aws s3 cp` if needed.
 
@@ -114,3 +141,5 @@ In v3, sample and analysis downloads work via server-generated presigned URLs. Y
 - [ ] Replace `api` key with `api_v3` in config; change prefix to `/api/v3/`
 - [ ] Update CLI scripts from `--action` style to `basepair <resource> <action>` style
 - [ ] Replace `file['path']` with `file['uri']` in Python code that processes result files
+- [ ] Update direct class calls from `config.get('api')` to `config.get('api_v3')` (or use `bp.conf.get('api')`)
+- [ ] Update any code that parses v2 plain-text errors to handle the v3 `errors[].detail` structure

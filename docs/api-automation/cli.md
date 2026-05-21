@@ -14,6 +14,25 @@ All commands follow the pattern:
 basepair <resource> <action> [options] -c /path/to/basepair.config.json
 ```
 
+### Global options
+
+| Option | Description |
+|--------|-------------|
+| `-c, --config PATH` | Path to config JSON file (or set `BP_CONFIG_FILE`) |
+| `-v, --version VERSION` | API version to use: `v3` (default) or `v2` |
+| `--quiet` | Suppress output |
+| `--verbose` | Enable verbose output |
+| `--scratch DIR` | Working directory for temporary files (default: `.`) |
+
+The `-v` / `--version` flag forces a specific API version for that command. Starting with package 3.x, **v3 is the default** — you only need this flag to explicitly use v2:
+
+```bash
+# Use v2 for a specific command (rarely needed)
+basepair -v v2 analysis list --project 8658 -c /path/to/basepair.config.json
+```
+
+Your config file must contain the corresponding section (`api_v3` for v3, `api` for v2) — see [Setup](./setup).
+
 An outline of the contents on this page:
 
 1. Creating a project

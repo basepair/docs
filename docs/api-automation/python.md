@@ -38,6 +38,16 @@ import json
 bp = basepair.connect(json.load(open('/path/to/basepair.config.json')))
 ```
 
+Starting with package 3.x, **v3 is the default**. To explicitly select a version, pass the `version` argument:
+
+```python
+# Explicit v3 (same as default)
+bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), version='v3')
+
+# Explicit v2 (requires an "api" section in your config)
+bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), version='v2')
+```
+
 You can also connect using environment variables without a file:
 
 ```python
@@ -289,3 +299,60 @@ for f in analysis['files']:
 ```
 
 > **Note:** If you are upgrading from v2, replace any `file['path']` references with `file['uri']`. See the [migration guide](./migration) for the full list of changes.
+
+---
+
+## 7. Using individual module classes directly
+
+The package exposes lower-level classes (`Analysis`, `Sample`, `Upload`, `Pipeline`, `Module`, etc.) for operations not available on the `BpApi` wrapper — such as bulk actions or custom filters.
+
+These classes take the raw API config dict as their first argument. With a v3 config file, that dict lives under the `api_v3` key:
+
+```python
+import json
+from basepair import Analysis, Sample
+
+config = json.load(open('/path/to/basepair.config.json'))
+
+# v3 config: use config.get('api_v3')
+analyses = Analysis(config.get('api_v3')).list_all_full(
+    filters={
+        'id__in': [91182, 91183],
+        'status__in': ['completed', 'failed'],
+        'order_by': '-last_updated',
+    }
+)
+
+# Bulk start analyses
+Analysis(config.get('api_v3')).bulk_start({'analyses': [...]})
+
+# Bulk import samples
+Sample(config.get('api_v3')).bulk_import({'samples': [], 'project_id': 8658})
+```
+
+> **Important:** Always match the config key to the API version you are targeting — `api_v3` for v3, `api` for v2. Passing the wrong key results in a `None` config and a connection error.
+
+If you are already using `basepair.connect()`, you can extract the resolved config from the `bp` object instead of reading the file again:
+
+```python
+bp = basepair.connect(json.load(open('/path/to/basepair.config.json')))
+
+# bp.conf['api'] always holds the resolved config for whichever version was connected
+Analysis(bp.conf.get('api')).list_all_full(filters={...})
+```
+
+---
+
+## 8. Error responses
+
+In v3, API errors return structured JSON with an `errors` array:
+
+```json
+{
+  "errors": [
+    {"detail": "No analysis found with id 99999."}
+  ]
+}
+```
+
+In v2, error messages were unstructured plain text. If you have code that parses error strings, update it to handle the v3 format or use the `BpApi` wrapper which normalises errors across versions.
