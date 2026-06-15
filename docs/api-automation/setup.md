@@ -37,7 +37,7 @@ basepair -h
 You need a configuration file to connect to Basepair’s API. To obtain it:
 
 1. Go to your dashboard: [app.basepairtech.com](https://app.basepairtech.com)  
-2. Click your profile name (top-right).  
+2. Click the profile icon (top-right).  
 3. Click **Profile**.  
 4. Click **Download API config file** (upper-right).
 

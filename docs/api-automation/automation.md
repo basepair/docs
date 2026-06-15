@@ -8,11 +8,14 @@ With Basepair, you can fully automate an NGS project—create a project, add mul
 
 0. **Sign in** to your Basepair account → `https://{domain}/`
 
-1. **Download your API config** from `https://{domain}/api/v3/users/api_key/` and point to it via an environment variable  
-   *(You must be logged in to download the JSON file.)*
+1. **Download your API config file** — follow the steps in [Setup](./setup#2-configuration) to download it from your dashboard. Then make it available to the CLI using one of:
 
    ```bash
+   # Option A — environment variable (persists for the session)
    export BP_CONFIG_FILE=/path/to/basepair.config.json
+
+   # Option B — per-command flag
+   basepair -c /path/to/basepair.config.json <subcommand>
    ```
 
 2. **Install the Basepair package**
@@ -24,7 +27,7 @@ With Basepair, you can fully automate an NGS project—create a project, add mul
 3. **Create a new project** for this data (note the returned project ID)
 
    ```bash
-   basepair project create --name desired_project_name --team <team_id>
+   basepair project create --name desired_project_name
    ```
 
 4. **Add your samples** (note each sample ID)

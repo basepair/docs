@@ -38,24 +38,10 @@ import json
 bp = basepair.connect(json.load(open('/path/to/basepair.config.json')))
 ```
 
-Starting with package 3.x, **v3 is the default**. To explicitly select a version, pass the `version` argument:
+Alternatively, set `BP_CONFIG_FILE` in your environment and call `connect()` with no arguments:
 
 ```python
-# Explicit v3 (same as default)
-bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), version='v3')
-
-# Explicit v2 (requires an "api" section in your config)
-bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), version='v2')
-```
-
-You can also connect using environment variables without a file:
-
-```python
-import os
-import basepair
-
-os.environ['BP_USERNAME'] = 'user@example.com'
-os.environ['BP_API_KEY'] = 'YOUR_API_KEY'
+# BP_CONFIG_FILE=/path/to/basepair.config.json already exported
 bp = basepair.connect()
 ```
 
@@ -108,6 +94,7 @@ bp.get_samples(filters={'projects': 8658})
 
 ```python
 sample = bp.get_sample(75042)
+print(sample)  # dict with sample fields (id, name, genome, status, …)
 ```
 
 ### 2.5 List analyses
@@ -122,10 +109,17 @@ Raw list:
 bp.get_analyses(filters={'projects': 8658})
 ```
 
-Analysis detail:
+Analysis detail — pretty table:
+
+```python
+bp.print_data('analysis', uid=[91182])
+```
+
+Raw dict (also needed for download calls below):
 
 ```python
 analysis = bp.get_analysis(91182)
+print(analysis)
 ```
 
 ---
@@ -166,10 +160,11 @@ bp.delete_sample(75042)
 
 ## 4. Creating an analysis
 
-Create an analysis once you know the `workflow_id` (pipeline ID):
+Create an analysis once you know the `workflow_id` (pipeline ID). The call returns the new analysis ID:
 
 ```python
 analysis_id = bp.create_analysis(workflow_id=4, sample_id=75042)
+print(analysis_id)  # e.g. 91182
 ```
 
 With custom parameters:
@@ -206,11 +201,11 @@ bp.create_analysis(
 )
 ```
 
-With a ChIP-seq input control:
+With a ChIP-seq input control (replace `workflow_id` with your ChIP-seq pipeline ID from `bp.get_pipelines()`):
 
 ```python
 bp.create_analysis(
-    workflow_id=10,
+    workflow_id=YOUR_CHIP_SEQ_PIPELINE_ID,
     sample_id=75042,
     control_id=75050,
 )
@@ -219,6 +214,8 @@ bp.create_analysis(
 ---
 
 ## 5. Downloading results
+
+Replace `91182` with your actual analysis ID throughout this section.
 
 Download all files for an analysis into `./results/`:
 
