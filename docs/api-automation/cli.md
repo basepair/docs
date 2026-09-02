@@ -266,11 +266,55 @@ Create a pipeline from a YAML definition file:
 basepair pipeline create --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
 ```
 
-Update an existing pipeline:
+Every pipeline has one or more **versions** (`PipelineVersion`) — exactly one is marked the *default*, and that's the one analyses run against unless a specific version is requested. `pipeline create` creates the pipeline and its initial default version (`1.0`) together.
+
+### Updating a pipeline in place
+
+`pipeline update` mutates the pipeline and its **default version** directly — it does not create a new version:
 
 ```bash
 basepair pipeline update -u 380 --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
 ```
+
+Since this changes the version every existing analysis already runs against, it's best for small, low-risk fixes. For a bigger change you want to test before it goes live, create a new version instead.
+
+### Creating a new pipeline version
+
+`pipeline_version create` adds a new, **non-default** version to an existing pipeline — it never touches the current default, so nothing changes for existing analyses until you explicitly promote it:
+
+```bash
+basepair pipeline_version create --file /path/to/pipeline_v2.yaml -c /path/to/basepair.config.json
+```
+
+```text
+created: pipeline version 2199 (1.1) for pipeline 380. It is NOT the default version yet -- run 'pipeline update -u 380 --set-default 2199' to promote it when ready.
+```
+
+The pipeline this version belongs to is the `id` field inside the YAML itself — there's no separate pipeline flag. The new version's number is bumped automatically from the pipeline's current default (e.g. `1.0` → `1.1`); you never specify this yourself. If the pipeline has no version yet (legacy data), the new one is created as the default instead.
+
+### Editing an existing version
+
+To edit a specific version's content directly — without forking a new one, and without changing which version is default — use `pipeline_version update` with the version's own ID:
+
+```bash
+basepair pipeline_version update -u 2199 --file /path/to/pipeline_v2_fixed.yaml -c /path/to/basepair.config.json
+```
+
+The YAML is authoritative: any field you omit (`description`, `summary`, `visibility`) is cleared, not left as-is.
+
+### Promoting a version to default
+
+Once you've tested a new version, promote it so analyses start using it:
+
+```bash
+basepair pipeline update -u 380 --set-default 2199 -c /path/to/basepair.config.json
+```
+
+```text
+updated: pipeline version 2199 (1.1) is now the default for pipeline 380.
+```
+
+`-u` must be the pipeline the version actually belongs to — the CLI verifies this and refuses if they don't match, so a typo can't silently promote the wrong pipeline's version.
 
 Create a module:
 
