@@ -11,7 +11,7 @@ title: Signup
 
    #### **Tokyo region**: [https://ap-1.basepairtech.com/signup](https://ap-1.basepairtech.com/signup)
 
-   #### **User domain**: [https://\[Domian\_name\].basepairtech.com/signup](https://ap-1.basepairtech.com/signup) 
+   #### **User domain**: [https://\[Domain\_name\].basepairtech.com/signup](https://ap-1.basepairtech.com/signup) 
 
    ![](images/image1.svg) 
    ![](images/image2.svg) 

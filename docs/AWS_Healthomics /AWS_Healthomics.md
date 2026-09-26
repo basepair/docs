@@ -40,7 +40,7 @@ title: AWS Healthomics Integration
    HealthOmics allows a maximum of **5 concurrent sample imports**. Additional samples are queued.  
    * The GUI does not explicitly show whether a sample resides in HO or S3.
 
-4.  **Identifying HealthOmics Samples is uploaded to HealthOmics or not:** 
+4.  **Identifying Whether a Sample Is Uploaded to HealthOmics:** 
 
    To verify if a sample was uploaded to HealthOmics:  
    **Status Indicator**:  
@@ -113,15 +113,15 @@ Note: Currently, the GUI does not explicitly show whether a sample resides in HO
   **Important Notes**:
 
 1. The workflow definition file must be a zip  
-   2. If we select an incorrect workflow language then Workflow creation will fail  
-   3. The visibility field states the visibility of workflow.   
-   4. If private it will be visible to the Owner of workflow only.  
-   5. If public it will be visible to all the users on the host.  
+   2. If we select an incorrect workflow language, the workflow creation will fail  
+   3. The visibility field states the visibility of the workflow.   
+   4. If private, it will be visible to the owner of the workflow only.  
+   5. If public, it will be visible to all the users on the host.  
    6. Workflow creation will fail if we specify an incorrect Main workflow definition file path  
    7. The parameters state the parameters expected during the run time.  
-   8. We can create max 100-private workflow  
+   8. We can create a max of 100 private workflows  
    9. Workflow is created on HealthOmics only if it's created successfully.  
-   10. Max file for zip is 4.4Mb
+   10. Max file size for zip is 4.4Mb
 
 7.  **Creating a HealthOmics Reference Genome**
 

@@ -10,8 +10,8 @@ You may configure the pipeline parameters in a YAML file.
   - optional `Optional validation, user will get an option to ignore warnings`
   - required `Required validation, user will not be able to start analysis`
 
-Here are a list of possible validations and accepted values. These validations
-maybe added to either the optional or required sections.
+Here is a list of possible validations and accepted values. These validations
+may be added to either the optional or required sections.
 
 - datatype `accepts multiple values as list, e.g, rna-seq, chip-seq, etc`
 - filetypes `accepts multiple values as list, e.g, bam, fastq, etc`
@@ -21,7 +21,7 @@ maybe added to either the optional or required sections.
 
 
 ### Example configuration
-In this example, if the data type is other than rna-seq, users gets a warning.
+In this example, if the data type is other than rna-seq, users get a warning.
 The only accepted file types in the sample are fastq and bam. Each sample must
 have a genome assigned and the pipeline will run on a single sample.
 

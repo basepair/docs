@@ -48,7 +48,7 @@ sidebar_position: 3
             - A combination of both
         ![select-samples](/img/select-samples.png)
 
-    #### Step5: Start Import
+    #### Step 5: Start Import
     Click **“Upload Samples”** to begin the import process.
     ![upload-samples](/img/upload-samples.png)
 

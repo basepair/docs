@@ -42,7 +42,7 @@ Steps to deploy Connected Cloud with your AWS account:
 - To deploy the Connected Cloud in your aws account, please reach out to basepair support team for the CloudFormation template.
 - Once you have the cloudformation template, you will be asked to choose the following parameters:
   - `AWS Region`: Choose the region where you want to deploy the stack.
-- Once the stack is deployed, go to the Outputs tab and note down the `Key` and `Value` of all the parameters into a `config.json` file.
+- Once the stack is deployed, go to the Outputs tab and note down the `Key` and `Value` of all the parameters in a `config.json` file.
 - Send the `config.json` file to Basepair support team.
 - Basepair support team will then configure the Connected Cloud with your Basepair account.
 

@@ -123,7 +123,7 @@ sidebar_position: 1
         This removes the user from the team but does not delete their account.
         - ### Host Admin: Deactivate or Delete Users (Organization-wide)
             - Step 1: If you are a Host admin, Go to **Settings → Users**
-            - Step 2:Choose a user and click **Deactivate**
+            - Step 2: Choose a user and click **Deactivate**
             ![deactivate-btn](/img/deactivate-btn.png)
             User cannot log in but their samples and data remain.
             Host Admin can reactivate later if needed.
