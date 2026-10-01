@@ -25,8 +25,8 @@ sidebar_position: 1
 - ## Account Creation and setup
 
     - ### **Creating Host Admin Account:**
-        - Host Admin accounts only created for the specific customer domains only. 
-        - To create the Host admin account, First user needs to signup on the platform with the organisational email ID and make a request to the basepair team to make him/her as host admin.
+        - Host Admin accounts are only created for specific customer domains. 
+        - To create the Host admin account, a user needs to first sign up on the platform with the organisational email ID and make a request to the basepair team to make them a host admin.
         (For user creation you can refer [User registration document](https://docs-basepair.vercel.app/User_Registration/User-registration)).
         - One organisation can have multiple host admins.
     - ### **Required information** (Org name, email domain, etc.):
@@ -35,7 +35,7 @@ sidebar_position: 1
         - User Name
         - Work email address
     - ### **Default setup after account creation**
-        - All the organisation level settings will be visible once the host admin access granted
+        - All the organisation level settings will be visible once host admin access is granted
         ![host-admin-dropdown](/img/host-admin-dropdown.png)
     - ### **Host Admin (Organization-Level Administrator) Permissions:**
         - Full visibility into all teams, projects, samples, and analyses
@@ -52,7 +52,7 @@ sidebar_position: 1
     Click on your **profile icon** in the top-right corner and open **Settings.**
         **Host Setting fields:**
             - Coupons (if you are a coupon based host) - For creating  and distributing the coupon code (For details refer the document: [Creating and managing coupon](https://docs-basepair.vercel.app/admin-guide/coupons))
-            -  Dashboard - This feature will provide you the analytics for the usage of the users i n the organisation
+            -  Dashboard - This feature provides various metrics for the organisation
                 - Pipeline analytics- 
                 - Team analytics- 
                 - Project analytics- 
@@ -110,7 +110,7 @@ sidebar_position: 1
     <br />
 - ## Audit & Activity Logs
     - Logs can be visible to only basepair staff through Admin panel url.
-    - To view account-level activity (logins, settings changes) user  need to connect with the basepair team member
+    - To view account-level activity (logins, settings change), the user needs to connect with the basepair team member
 
     <br />
 - ## Support & Troubleshooting

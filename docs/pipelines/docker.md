@@ -10,7 +10,7 @@ sidebar_position: 1
 
 Basepair allows you to import and run a custom bioinformatics workflow in a few simple steps.
 We recommend packaging individual steps of the workflow into docker containers for portability, version control, and reproducibility. Then, using YAML text files, the individual steps (modules) can be defined and stitched together to create the workflow. YAML format is
-supported by all major programming languages, easy to edit and read, and let's you keep your modules and workflows in version control. After creating the workflow, it then of course needs to be tested to ensure it is running properly and producing the expected results. *Alternatively, you can provide your custom pipeline to Basepair as-is, and we can Dockerize/build the pipeline as well.
+supported by all major programming languages, is easy to edit and read, and lets you keep your modules and workflows in version control. After creating the workflow, it then of course needs to be tested to ensure it is running properly and producing the expected results. *Alternatively, you can provide your custom pipeline to Basepair as-is, and we can Dockerize/build the pipeline as well.
 Feel free to check out our pages on creating and storing Docker images for more information.
 
 ### Define the modules
@@ -20,7 +20,7 @@ A "module" refers to a single tool or a group of tools that run as a single unit
 - a call to BWA to align the data as well as a SAMtools call to sort and index the alignments
 In the 2nd example above, BWA and SAMtools calls are combined in a single module because many tools require both sorted and indexed BAM files for downstream analysis. This way, the module performs the complete logical task of alignment, even though it is calling two different software tools.
 Importantly, modules are often used across multiple workflows, so it's important that command options and input files are not hard-coded, but instead exposed as parameters in the docker run call.
-The module YAML file defines 3 primary pieces information:
+The module YAML file defines 3 primary pieces of information:
 Path to executables and command structure
 Inputs
 Outputs
@@ -60,7 +60,7 @@ Specify a base image to build upon (e.g. an empty ubuntu image), by adding to th
 From ubuntu
 ```
 
-Install any required dependencies(e.g. install, make, gcc, and git):
+Install any required dependencies (e.g. install, make, gcc, and git):
 
 ```
 RUN apt-get update -qq \
@@ -127,7 +127,7 @@ An existing image can be copied and renamed using your dockerhub user ID with:
 docker tag image_name:0.0.1 userID/image_name:0.0.1
 ```
 
-And then pushed to you dockerhub repository with:
+And then pushed to your dockerhub repository with:
 
 
 ```
@@ -136,16 +136,16 @@ docker push userID/image_name:0.0.1
 
 ### Storage in a private repository
 
-To store your docker images privately, we recommend amazon's elastic container registry (ECR).
+To store your docker images privately, we recommend Amazon's Elastic Container Registry (ECR).
 With ECR, you have two options:
 
 - Option 1:
-    Store the image under your own aws account and setup the proper IAM policy to allow Basepair to pull images from your repository
+    Store the image under your own aws account and set up the proper IAM policy to allow Basepair to pull images from your repository
 
 - Option 2:
     Store the image in Basepair's ECR:
 
-We will setup the proper IAM policy allowing you to push images to a private repository in our ECR.
+We will set up the proper IAM policy allowing you to push images to a private repository in our ECR.
 - To do this, first contact a Basepair team member in order to share the necessary aws credentials.
 - Once Basepair has created the repository, we will share the information needed for you to push images.
 

@@ -8,7 +8,7 @@ title: Local upload
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/gVDmHGulM0Q" frameborder="0" allowfullscreen></iframe>
 
-Basepair’s local upload system is very easy to use. There 2 steps, one select files and two, enter the meta data common to all samples.
+Basepair’s local upload system is very easy to use. There are 2 steps: one, select files, and two, enter the meta data common to all samples.
 
 
 ### Select files
@@ -28,7 +28,7 @@ Next, you’ll want to add the appropriate metadata settings. Choose your **data
 The upload will start and you will see the progress bar directly on the page.  
 
 :::warning Keep Your Computer Running!
-Uploads may take some time, especially for large files. Ensure your computer stays powered on and connected to a stable internet connection. Most office networks should allow approx 1Gb per minute.
+Uploads may take some time, especially for large files. Ensure your computer stays powered on and connected to a stable internet connection. Most office networks should allow approximately 1Gb per minute.
 :::
 
 Once the data upload process has started, you’re ready to start analyzing it! You don't have to wait for upload to complete to trigger analysis. The platform will automatically wait for upload to complete before actually starting the analysis process.

@@ -5,7 +5,7 @@ sidebar_position: 4
 # Import from GEO
 
 Automatically import data from NCBI GEO / SRA. Thereafter you may run your
-favorite piplines on the data.
+favorite pipelines on the data.
 
 1. In the top menu bar, hover over "Samples" and click **Import from NCBI GEO/SRA**.
 2. In the "Accession" input box, enter the accession IDs separated by commas.

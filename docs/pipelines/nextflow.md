@@ -9,7 +9,7 @@ sidebar_position: 1
 Nextﬂow is a powerful and ﬂexible workﬂow management system that supports various types of pipelines.
 
 ### Overview
-This brief document outlines the requirements and considerations for integrating Nextﬂow pipeline with Basepair. The integration will allow users to run their Nextﬂow pipelines on the Basepair platform, leveraging the beneﬁts of cloud-based computing infrastructure and enhanced data management capabilities. Maximize your workﬂow eﬃciency with Basepair's versioning , allowing you to eﬀortlessly switch between pipeline versions.
+This brief document outlines the requirements and considerations for integrating a Nextﬂow pipeline with Basepair. The integration will allow users to run their Nextﬂow pipelines on the Basepair platform, leveraging the beneﬁts of cloud-based computing infrastructure and enhanced data management capabilities. Maximize your workﬂow eﬃciency with Basepair's versioning, allowing you to eﬀortlessly switch between pipeline versions.
 
 - **Prerequisites**
 - **Pipeline & Module YAML Creation**
@@ -28,7 +28,7 @@ You'll be able to monitor the progress of your analysis and access the results w
 ### Prequisites
 
 #### Get Started Quickly:
-This document outlines the various methods to import your Nextﬂow pipeline on Basepair platform for eﬃcient and streamlined analysis.
+This document outlines the various methods to import your Nextﬂow pipeline on the Basepair platform for eﬃcient and streamlined analysis.
 
 - **Package Your Pipeline**
 

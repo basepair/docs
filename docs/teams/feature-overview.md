@@ -8,7 +8,7 @@ Basepair users can establish teams through the team feature to create and contro
 ![users_teams_projects_billing.svg](/img/users_teams_projects_billing.svg)
 
 ## Why is it needed?
-The new feature introduced a structured team-based model, which took over the user-centric format that previously existed. The team function establishes enhanced organisation alongside user permission control as well as cost management capabilities that multi-user facilities like laboratories and organizations need.The team-based organizational model helps Basepair better alignment between users, projects, and billing.
+The new feature introduced a structured team-based model, which took over the user-centric format that previously existed. The team function establishes enhanced organisation alongside user permission control as well as cost management capabilities that multi-user facilities like laboratories and organizations need. The team-based organizational model helps Basepair achieve better alignment between users, projects, and billing.
 
 ## Key Benefits for Customers
 - Collaboration: Enables multiple users to work together within organised teams.

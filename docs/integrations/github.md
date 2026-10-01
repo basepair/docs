@@ -1,17 +1,18 @@
 ---
-sidebar_position: 2
+sidebar_label: GitHub
+sidebar_position: 3
 ---
 
-# GitHub Integrations
+# GitHub Integration
 
 This guide explains how to integrate your GitHub account with Basepair to enable repository access for pipeline execution.
 You can install the Basepair GitHub App either at the Organization level or the User level, depending on your setup.
 
 - ## Organization-Level Installation
-    Install Basepair Github app at your organization github account and provide read-only access to repositories which will be used during pipeline execution.
+    Install the Basepair Github app at your organization github account and provide read-only access to repositories which will be used during pipeline execution.
 
-    - ### Step1: Open Integration Settings
-        - Go to the Organizational setting Page > Integration tab, at this section.
+    - ### Step 1: Open Integration Settings
+        - Go to the Organizational settings Page > Integration tab, at this section.
         - Click on Install **Basepair App** button to install it.
 
         ![integration-tab-org-settings](/img/integration-tab-org-settings.png)
@@ -52,7 +53,7 @@ You can install the Basepair GitHub App either at the Organization level or the 
 
 - ## User-Level Installation
     If you prefer to connect your personal GitHub account, follow these steps:
-    Install Basepair Github app **at your personal github account** and provide read-only access to repositories which will be used during pipeline execution.
+    Install the Basepair Github app **at your personal github account** and provide read-only access to repositories which will be used during pipeline execution.
 
     - ### Step 1: Open Profile Settings:
         - Select Profile from setting
@@ -72,7 +73,7 @@ You can install the Basepair GitHub App either at the Organization level or the 
         - Click the right arrow to proceed.
 
         ![select-organisation](/img/select-organisation.png)
-        - Select the **repositories** you want Basepair to access to.
+        - Select the **repositories** you want Basepair to access.
         - Click **Install**.
 
         ![install-repos](/img/install-repos.png)
@@ -93,7 +94,6 @@ You can install the Basepair GitHub App either at the Organization level or the 
             ![git-integration-unsuccessful-modal](/img/git-integration-unsuccessful-modal.png)
     - ### Step 5: Uninstall (Optional)
         To remove Basepair from your personal GitHub account, go to **GitHub Settings → Applications**, locate Basepair, and click **Uninstall**.
-        If you want to remove it from your account then click on uninstall.
 
         ![uninstall-basepair-option](/img/uninstall-basepair-option.png)
 

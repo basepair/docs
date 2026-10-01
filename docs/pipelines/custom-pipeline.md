@@ -73,7 +73,7 @@ When creating a new custom pipeline, you must first provide its basic details.
    - Add relevant keywords to categorize.
 8. **Validation**  
    - Add validation to the pipeline:  
-     - **Required Fields:** items required for the pipeline once you check the checkbox.  
+     - **Required Fields:** items are required for the pipeline once you check the checkbox.  
      - **Optional Fields:** items are optional if you do **not** check the checkbox.
 
 

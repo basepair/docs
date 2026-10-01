@@ -6,7 +6,7 @@ slug: /
 
 # Getting started with Basepair
 
-Basepair is an Enterprise genomics data analysis and interpretation platform. Many commonly used best-practices piplines are available. Users may add their own custom pipelines as well.
+Basepair is an Enterprise genomics data analysis and interpretation platform. Many commonly used best-practices pipelines are available. Users may add their own custom pipelines as well.
 
 ### Navigation
 The menu bar at the top of the page allows you to quickly and easily browse your samples, analyses, and projects using the drop-downs.

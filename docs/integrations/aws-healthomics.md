@@ -1,9 +1,9 @@
 ---
-sidebar_position: 1
-title: AWS Healthomics Integration
+title: AWS HealthOmics
+sidebar_position: 2
 ---
 
-
+# AWS HealthOmics Integration
 
 1.  **Platform Overview**    Basepair is a cloud-based bioinformatics platform designed to streamline genomic data analysis for clinical and research labs. It enables users to upload raw sequencing data, run customizable pipelines, and generate interactive reports — all from a user-friendly interface.
 
@@ -40,7 +40,7 @@ title: AWS Healthomics Integration
    HealthOmics allows a maximum of **5 concurrent sample imports**. Additional samples are queued.  
    * The GUI does not explicitly show whether a sample resides in HO or S3.
 
-4.  **Identifying HealthOmics Samples is uploaded to HealthOmics or not:** 
+4.  **Identifying if a Sample is Uploaded to HealthOmics:** 
 
    To verify if a sample was uploaded to HealthOmics:  
    **Status Indicator**:  
@@ -67,7 +67,7 @@ Note: Currently, the GUI does not explicitly show whether a sample resides in HO
 
     Once configured, an analysis will be launched on both **Basepair** and **HealthOmics** platforms.
 
- ![](images/image1.svg)
+ ![](aws-healthomics-images/image1.svg)
  **Example Analyses**
 
 1.  **Ready-2-Run Workflow**: [View Analysis](https://aws.basepairtech.com/analyses/122095)
@@ -84,7 +84,7 @@ Note: Currently, the GUI does not explicitly show whether a sample resides in HO
 
     You can create your own custom workflows on AWS HealthOmics and manage them via the Basepair platform.
 
-![](images/image2.svg)
+![](aws-healthomics-images/image2.svg)
 
  **Steps to Create a Private Workflow**
 
@@ -108,20 +108,20 @@ Note: Currently, the GUI does not explicitly show whether a sample resides in HO
 
  Input Parameters
 
-![](images/image3.svg)
+![](aws-healthomics-images/image3.svg)
 
   **Important Notes**:
 
 1. The workflow definition file must be a zip  
-   2. If we select an incorrect workflow language then Workflow creation will fail  
-   3. The visibility field states the visibility of workflow.   
-   4. If private it will be visible to the Owner of workflow only.  
-   5. If public it will be visible to all the users on the host.  
+   2. If we select an incorrect workflow language, the workflow creation will fail  
+   3. The visibility field states the visibility of the workflow.   
+   4. If private, it will be visible to the owner of the workflow only.  
+   5. If public, it will be visible to all the users on the host.  
    6. Workflow creation will fail if we specify an incorrect Main workflow definition file path  
    7. The parameters state the parameters expected during the run time.  
-   8. We can create max 100-private workflow  
+   8. We can create a max of 100 private workflows  
    9. Workflow is created on HealthOmics only if it's created successfully.  
-   10. Max file for zip is 4.4Mb
+   10. Max file size for zip is 4.4Mb
 
 7.  **Creating a HealthOmics Reference Genome**
 
@@ -131,11 +131,11 @@ Note: Currently, the GUI does not explicitly show whether a sample resides in HO
 
 Go to the **Samples** tab and select **Add Genome**.
 
-![](images/image4.svg)
+![](aws-healthomics-images/image4.svg)
 
 Enter a unique genome name and upload your genome file.
 
-![](images/image5.svg)
+![](aws-healthomics-images/image5.svg)
 
 Once uploaded to S3, **ho\_import** begins automatically.
 
@@ -143,7 +143,7 @@ Status will be marked as **Completed** once the genome is imported successfully.
 
 You can also add genome-level parameters during setup.
 
-![](images/image6.svg)
+![](aws-healthomics-images/image6.svg)
 
 8.  **Importing AWS HealthOmics Workflows into Basepair:**
 
@@ -153,7 +153,7 @@ Navigate to **Pipelines \> AWS HealthOmics Workflows**
 
 All workflows from your AWS account will be listed
 
-![](images/image7.svg)
+![](aws-healthomics-images/image7.svg)
 
 2.  **Step 2: Sync a Workflow**
 
@@ -161,13 +161,13 @@ Click the **Sync** button to import the workflow and its parameters
 
 Sync status will show ✅ Yes once successful
 
-![](images/image8.svg)
+![](aws-healthomics-images/image8.svg)
 
 3.  **Step 3: Configure Parameters**
 
 Go to **Pipelines \> Basepair HealthOmics Workflows \> \[Your Synced Workflow\] \> Edit**
 
-![](images/image9.svg)
+![](aws-healthomics-images/image9.svg)
 
 * For each parameter, define how it behaves:  
   * **Sample URI**: Auto-populated from uploaded sample  
@@ -177,7 +177,7 @@ Go to **Pipelines \> Basepair HealthOmics Workflows \> \[Your Synced Workflow\] 
     * Descriptions are editable  
     * Tooltips support multiline text and special characters
 
-![](images/image10.svg)
+![](aws-healthomics-images/image10.svg)
 
  **8.4.  Step 4: Select Storage Type**
 
@@ -185,7 +185,7 @@ When creating or updating a workflow, select **Dynamic Storage Option** to enabl
 
 This option must remain enabled even after syncing.
 
-![](images/image11.svg)
+![](aws-healthomics-images/image11.svg)
 
 9.   **Workflow Details & Reporting**
 
@@ -195,7 +195,7 @@ This option must remain enabled even after syncing.
 
        Rich, browser-based visual reports for workflow outputs
 
-![](images/image12.svg)
+![](aws-healthomics-images/image12.svg)
 
  **9.2.  Input/Output Files**
 

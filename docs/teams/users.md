@@ -30,7 +30,7 @@ title: Users
     ![team-detail-page](/img/team-detail-page.png)
 
 - ## Steps to add a new member to a team:
-    - Navigate to the team Details Page and go to the  Members tab.
+    - Navigate to the team Details Page and go to the Members tab.
         <br />
     ![team-members-tab-on-detail-page](/img/team-members-tab-on-detail-page.png)
 
