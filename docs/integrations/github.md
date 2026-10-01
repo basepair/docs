@@ -1,8 +1,9 @@
 ---
+sidebar_label: GitHub
 sidebar_position: 3
 ---
 
-# GitHub Integrations
+# GitHub Integration
 
 This guide explains how to integrate your GitHub account with Basepair to enable repository access for pipeline execution.
 You can install the Basepair GitHub App either at the Organization level or the User level, depending on your setup.

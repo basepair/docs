@@ -1,9 +1,9 @@
 ---
-title: AWS Healthomics
+title: AWS HealthOmics
 sidebar_position: 2
 ---
 
-# AWS Healthomics Integration
+# AWS HealthOmics Integration
 
 1.  **Platform Overview**    Basepair is a cloud-based bioinformatics platform designed to streamline genomic data analysis for clinical and research labs. It enables users to upload raw sequencing data, run customizable pipelines, and generate interactive reports — all from a user-friendly interface.
 

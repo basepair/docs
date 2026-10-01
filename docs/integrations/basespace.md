@@ -1,4 +1,5 @@
 ---
+sidebar_label: BaseSpace
 sidebar_position: 4
 ---
 
