@@ -26,7 +26,7 @@ sidebar_position: 1
 
     - ### **Creating Host Admin Account:**
         - Host Admin accounts are only created for specific customer domains. 
-        - To create the Host admin account, the first user needs to sign up on the platform with the organisational email ID and make a request to the basepair team to make them a host admin.
+        - To create the Host admin account, a user needs to first sign up on the platform with the organisational email ID and make a request to the basepair team to make them a host admin.
         (For user creation you can refer [User registration document](https://docs-basepair.vercel.app/User_Registration/User-registration)).
         - One organisation can have multiple host admins.
     - ### **Required information** (Org name, email domain, etc.):
@@ -52,7 +52,7 @@ sidebar_position: 1
     Click on your **profile icon** in the top-right corner and open **Settings.**
         **Host Setting fields:**
             - Coupons (if you are a coupon based host) - For creating  and distributing the coupon code (For details refer the document: [Creating and managing coupon](https://docs-basepair.vercel.app/admin-guide/coupons))
-            -  Dashboard - This feature will provide you the analytics for the usage of the users in the organisation
+            -  Dashboard - This feature provides various metrics for the organisation
                 - Pipeline analytics- 
                 - Team analytics- 
                 - Project analytics- 
@@ -110,7 +110,7 @@ sidebar_position: 1
     <br />
 - ## Audit & Activity Logs
     - Logs can be visible to only basepair staff through Admin panel url.
-    - To view account-level activity (logins, settings changes), the user needs to connect with the basepair team member
+    - To view account-level activity (logins, settings change), the user needs to connect with the basepair team member
 
     <br />
 - ## Support & Troubleshooting

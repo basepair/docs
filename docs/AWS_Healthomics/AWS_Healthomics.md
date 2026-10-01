@@ -40,7 +40,7 @@ title: AWS Healthomics Integration
    HealthOmics allows a maximum of **5 concurrent sample imports**. Additional samples are queued.  
    * The GUI does not explicitly show whether a sample resides in HO or S3.
 
-4.  **Identifying Whether a Sample Is Uploaded to HealthOmics:** 
+4.  **Identifying if a Sample is Uploaded to HealthOmics:** 
 
    To verify if a sample was uploaded to HealthOmics:  
    **Status Indicator**:  
