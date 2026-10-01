@@ -1,5 +1,6 @@
 ---
-sidebar_position: 4
+title: AWS Healthomics
+sidebar_position: 2
 ---
 
 # AWS Healthomics Integration
