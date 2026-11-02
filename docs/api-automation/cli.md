@@ -41,6 +41,7 @@ An outline of the contents on this page:
 4. Downloading results
 5. Managing pipelines and modules
 6. Other commands
+7. Monitoring coupons and users
 
 ---
 
@@ -307,3 +308,55 @@ basepair file download -u 456789 -o ./downloads -c /path/to/basepair.config.json
 basepair analysis delete -u 91182 -c /path/to/basepair.config.json
 basepair sample delete -u 75042 -c /path/to/basepair.config.json
 ```
+
+---
+
+## 7. Monitoring coupons and users
+
+Pull coupon and user status for your host directly, instead of checking the web UI's [Coupons](../admin-guide/coupons) and [Users](../admin-guide/user) pages by hand.
+
+### Listing coupons
+
+List the coupon definitions for your host — name, code, available samples, owner, status, and when the coupon was created:
+
+```bash
+basepair coupon list -c /path/to/basepair.config.json
+```
+
+```text
+  id  name     code      available samples  owner                status    created on
+----  -------  ------  --------------------  -------------------  --------  ---------------------------
+3402  Promo25  ZPi2XF                     1  owner@example.com    expired   2026-10-22T05:22:22.947831Z
+```
+
+Look up a single coupon by id:
+
+```bash
+basepair coupon get -u 3402 -c /path/to/basepair.config.json
+```
+
+This returns fewer columns than `list` (no `owner` or `created on`) — the API's single-coupon endpoint returns a smaller set of fields than the list endpoint does.
+
+### Listing the coupons issued to a user
+
+Pass `--user` with a user id to see that user's coupons instead of your host's coupon definitions — their status, remaining samples, and activation timestamp:
+
+```bash
+basepair coupon list --user 6075 -c /path/to/basepair.config.json
+```
+
+```text
+     id  coupon    available samples  status     expire at             activated on    notified
+-------  -------  --------------------  ---------  --------------------  --------------  ----------
+4144226  Promo25                     1  expired    2026-10-15T18:30:00Z                  False
+```
+
+`--user` is required for this view — without it, the underlying endpoint has no way to scope results to your host and would return every user's coupons on the platform. The user is implicit from the id you passed in; this view doesn't repeat it as a column. There's no issuance timestamp here either — use the coupon's own `created on` from `coupon list` for that.
+
+### Listing users
+
+```bash
+basepair user list -c /path/to/basepair.config.json
+```
+
+> **Note:** this currently only returns your own account's record, not your full host's member list, regardless of your role. If you need the full list, use the web UI's [Users](../admin-guide/user) page for now.
