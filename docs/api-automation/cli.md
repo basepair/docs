@@ -18,7 +18,7 @@ Resources: `analysis`, `coupon`, `file`, `genome`, `module`, `pipeline`, `pipeli
 
 ### Global options
 
-The API-version flag goes **before** the resource; every other option goes **after** the action.
+Only the API-version flag goes **before** the resource. Every other option goes **after** the action, in any order.
 
 | Option | Position | Description |
 |--------|----------|-------------|
@@ -38,7 +38,7 @@ basepair -c /path/to/basepair.config.json analysis list --project 20083
 basepair analysis list --project 20083 -v v2 -c /path/to/basepair.config.json
 ```
 
-Starting with package 3.x, **v3 is the default** — you only need `-v` to explicitly use v2. Your config file must contain the matching section (`api_v3` for v3, `api` for v2) — see [Setup](./setup).
+**v3 is the default.** You only need `-v v2` if you have a reason to talk to the legacy API; the config file must then contain the matching `api` section (see [Setup](./setup)).
 
 Every command starts by printing which config and API version it is using:
 
@@ -137,7 +137,7 @@ Notes:
 
 * `--name` is required; `--type` defaults to `rna-seq`.
 * `--file1` / `--file2` accept several paths (one per lane). Files must exist locally and end in one of: `.ab1 .bai .bam .crai .csfasta .csv .fasta .fastq .fq .gvcf .qual .vcf .sam .sra .txt .bz .bz2 .gz .zip`.
-* `--pipeline <id>` sets a default pipeline that runs as soon as the upload completes.
+* `--pipeline <id>` records a default pipeline for the sample (`default_workflow`).
 * `--platform <name>` records the sequencing platform.
 * `--key K --val V` (repeatable) attaches extra metadata, e.g. `--key stranded --val yes --key adapter --val AGATCGGAAGAGC`.
 
@@ -404,11 +404,13 @@ Copying from s3 bucket to  ./worker.log
 All analysis logs have been downloaded successfully.
 ```
 
-Download the raw uploaded reads of a sample (all uploads, or filtered by tag like analyses):
+Download the raw reads that were uploaded for a sample:
 
 ```bash
 basepair sample download -u 78476 -o ./raw -c /path/to/basepair.config.json
 ```
+
+With `--tags` (and optionally `--tagkind`), `sample download` switches to downloading **result files** from the sample's analyses that match the tags, e.g. `--tags bam` fetches the BAM produced by its alignment analysis.
 
 ---
 

@@ -116,7 +116,7 @@ bp.get_samples(filters={'projects__id': 20083})
 | Example | Meaning |
 |---------|---------|
 | `{'projects__id': 20083}` | items in project 20083 |
-| `{'owner__id': 4453}` | items owned by user 4453 |
+| `{'owner__id': 4453}` | samples / analyses owned by user 4453 (projects and pipelines do not support this filter) |
 | `{'status': 'completed'}` | exact match on a plain field |
 | `{'status__in': ['completed', 'failed']}` | any of several values (lists are joined with commas) |
 | `{'id__in': [128540, 128520]}` | specific ids |
@@ -199,7 +199,7 @@ data = {
         'Sample1.lane2.R2.fastq.gz',
     ],
     # 'projects': 20083,           # optional: project id
-    # 'default_workflow': 8,       # optional: pipeline to run once uploaded
+    # 'default_workflow': 8,       # optional: default pipeline for the sample
     # 'info': {'stranded': 'yes'}  # optional: extra metadata
 }
 
@@ -237,7 +237,7 @@ Returns the API response on success and `False` on failure.
 
 ## 4. Creating an analysis
 
-Create an analysis once you know the `workflow_id` (pipeline id, from `bp.get_pipelines()`) and the sample id. The call returns the new analysis id (and exits the interpreter with `ERROR: Analysis creation failed!` if the server rejects it):
+Create an analysis once you know the `workflow_id` (pipeline id, from `bp.get_pipelines()`) and the sample id. The call returns the new analysis id. If the server rejects the request the SDK prints `ERROR: Analysis creation failed!` and calls `sys.exit()`, so wrap it in `try/except SystemExit` in long-running scripts:
 
 ```python
 bp.create_analysis(workflow_id=18, sample_id=64002)

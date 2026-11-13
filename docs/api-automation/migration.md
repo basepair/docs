@@ -63,7 +63,7 @@ v3 is a different filter backend. Foreign keys are filtered with `__id`, and `__
 | `bp.get_analyses(filters={'owner__exact': 123})` | `bp.get_analyses(filters={'owner__id': 123})` |
 | `filters={'order_by': '-id'}` | unchanged |
 
-`bp.print_data('samples', project=8658)` and the CLI `--project` flag handle this for you.
+`bp.print_data('samples', project=8658)` and the CLI `--project` flag handle this for you. Not every resource exposes every filter — `owner__id` works on samples and analyses but is ignored on projects and pipelines — so check the result count when you add a new filter.
 
 ### 4.2 Foreign keys are ids, not URIs
 
