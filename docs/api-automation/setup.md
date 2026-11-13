@@ -17,6 +17,7 @@ Contents:
 ### Requirements
 
 * **Python 3.8+** (Python 2 is no longer supported)
+* The package depends on the AWS CLI (`awscli`), which `pip` installs for you. Result downloads use it under the hood.
 
 ### Install the package
 
@@ -30,84 +31,97 @@ Once installed, the **basepair** command should be available:
 basepair -h
 ```
 
+```text
+usage: basepair [-h] [-v VERSION]
+                {analysis,coupon,user,file,genome,module,pipeline,pipeline_version,project,sample}
+                ...
+
+Basepair CLI, API version 3.6.1
+```
+
+To upgrade an existing installation:
+
+```bash
+pip install --upgrade basepair
+```
+
 ---
 
 ## 2. Configuration
 
-You need a configuration file to connect to Basepair’s API. To obtain it:
+You need a configuration file to connect to Basepair's API. To obtain it:
 
 1. Go to your dashboard: [app.basepairtech.com](https://app.basepairtech.com)  
 2. Click the profile icon (top-right).  
 3. Click **Profile**.  
 4. Click **Download API config file** (upper-right).
 
-A downloaded file looks like:
+The downloaded `basepair.config.json` contains two sections:
 
 ```json
 {
+  "api": {
+    "cli": true,
+    "host": "app.basepairtech.com",
+    "prefix": "/api/v2/",
+    "ssl": true,
+    "username": "user@example.com",
+    "key": "YOUR_V2_API_KEY"
+  },
   "api_v3": {
     "cli": true,
     "host": "app.basepairtech.com",
     "prefix": "/api/v3/",
     "ssl": true,
-    "username": "user@basepairtech.com",
-    "key": "YOUR_API_KEY"
+    "username": "user@example.com",
+    "key": "YOUR_V3_API_KEY"
   }
 }
 ```
 
-`key` is your personal access token. The `api_v3` section targets the current API (v3). If your downloaded file still shows an `api` section with `/api/v2/`, see the [migration guide](./migration) to update it.
+| Section  | `prefix`   | Used by                                          |
+|----------|------------|--------------------------------------------------|
+| `api_v3` | `/api/v3/` | **Default.** Package 3.x uses this section unless you ask for v2. |
+| `api`    | `/api/v2/` | Legacy v2 API. Only used when you pass `-v v2` (CLI) or `version='v2'` (Python). |
 
-### Config keys and API versions
+Each section has its own `key`. The `api_v3` key is a personal access token; keep it secret. If you only ever use v3 you can delete the `api` section, but leaving it in place is harmless.
 
-The config section key determines which API version the SDK uses:
+If your file has **only** an `api` section (downloaded before v3 existed), download a fresh copy from your profile page — see the [migration guide](./migration) for the other changes.
 
-| Config key | `prefix` | API version |
-|------------|----------|-------------|
-| `api_v3`   | `/api/v3/` | v3 (default since package 3.x) |
-| `api`      | `/api/v2/` | v2 (legacy) |
+### Pointing the CLI and SDK at the config file
 
-You can keep both sections in the same file if you need to switch versions:
-
-```json
-{
-  "api_v3": {
-    "host": "app.basepairtech.com",
-    "prefix": "/api/v3/",
-    "ssl": true,
-    "username": "user@example.com",
-    "key": "YOUR_V3_KEY"
-  },
-  "api": {
-    "host": "app.basepairtech.com",
-    "prefix": "/api/v2/",
-    "ssl": true,
-    "username": "user@example.com",
-    "key": "YOUR_V2_KEY"
-  }
-}
-```
-
-To make this file available to your API calls, choose one of the following:
+Choose one of the following:
 
 **Option 1 – environment variable (recommended)**
 
+Set it once per shell session; every `basepair` command and `basepair.connect()` call picks it up:
+
 ```bash
 export BP_CONFIG_FILE=/path/to/basepair.config.json
+basepair genome list
 ```
 
-**Option 2 – command-line flag**
+**Option 2 – `-c` / `--config` flag**
+
+Pass the path on every command. The flag belongs **after** the action, together with the other command options:
 
 ```bash
-basepair -c /path/to/basepair.config.json
+basepair genome list -c /path/to/basepair.config.json
 ```
 
-**Option 3 – environment variables only (no file needed)**
+Running a command without either gives:
 
-```bash
-export BP_USERNAME=user@basepairtech.com
-export BP_API_KEY=YOUR_API_KEY
+```text
+ERROR: Please either use the -c or --config param or set the environment variable BP_CONFIG_FILE!
 ```
 
-You can now use Basepair’s genomics tools from the CLI or the Python API.  
-For usage details, see the **Command-Line API** or **Python API** tutorials.
+In Python, pass the loaded JSON to `connect()` (or rely on `BP_CONFIG_FILE` and call `connect()` with no arguments):
+
+```python
+import basepair, json
+
+bp = basepair.connect(json.load(open('/path/to/basepair.config.json')))
+```
+
+You can now use Basepair's genomics tools from the CLI or the Python API.  
+For usage details, see the [Command-line API](./cli) or [Python API](./python) pages.
