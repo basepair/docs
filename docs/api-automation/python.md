@@ -52,13 +52,25 @@ INFO: Using Webapp API v2
 
 `bp.version` tells you which API you are connected to. If the config is missing the required section, `connect()` prints a `CONFIG_ERROR:` line and returns `None` — check that before calling methods on `bp`.
 
-**The SDK is quiet by default.** Methods return values (ids, dicts, lists) and only print `INFO:` and `ERROR:` lines. The progress messages the CLI shows (`created: sample with id …`, `deleted sample …`, `Downloading …`) appear only if you connect with `verbose=True`:
+### What gets printed
+
+Methods **return** values (ids, dicts, lists). Messages go to **stderr**, following the same rules as the CLI:
+
+| `connect(...)` | Confirmations (`created: …`, `… updated`, `deleted …`, restart/terminate) | Progress (upload steps, `Downloading …`, `Copying …`) |
+|---|---|---|
+| default (`verbose=None`) | yes | no |
+| `verbose=True` (same as the CLI default) | yes | yes |
+| `verbose=False` (same as the CLI `--quiet`) | no | no |
+
+`INFO:` and `ERROR:` lines are always printed; return values never depend on `verbose`. Unlike the CLI, the SDK never asks for confirmation before a delete.
 
 ```python
 bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), verbose=True)
 ```
 
-The outputs on this page show the default (quiet) behaviour.
+> **Version note:** the confirmation lines appear by default from **basepair 3.7.2**. On 3.0–3.7.1 the SDK printed them only with `verbose=True`; the return values are the same.
+
+The outputs on this page show the default mode.
 
 > **Note:** `version=` requires basepair 3.0 or newer. On an older 2.x install it fails with `TypeError: BpApi.__init__() got an unexpected keyword argument 'version'`; run `pip install --upgrade basepair`.
 
@@ -215,10 +227,11 @@ bp.create_sample(data=data)
 ```
 
 ```text
+created: sample with id 78477
 78477
 ```
 
-With `verbose=True` you also see the progress: `created: sample with id 78477`, `Creating upload Sample1.lane1.R1.fastq.gz`, `created: upload with id 105490`, and so on.
+With `verbose=True` you also see each upload step: `Sample id: 78477`, `Creating upload Sample1.lane1.R1.fastq.gz`, `created: upload with id 105490`, and so on.
 
 ### 3.2 Update a sample
 
@@ -233,10 +246,11 @@ bp.delete_sample(78477)
 ```
 
 ```text
+deleted sample 78477
 {'error': False}
 ```
 
-Returns `{'error': False}` on success and `False` on failure (after printing an `ERROR:` line). Unlike the CLI, there is no confirmation prompt — the sample is deleted immediately. The `deleted sample 78477` message is only printed with `verbose=True`.
+Returns `{'error': False}` on success and `False` on failure (after printing an `ERROR:` line). Unlike the CLI, there is no confirmation prompt — the sample is deleted immediately.
 
 ---
 
@@ -249,10 +263,9 @@ bp.create_analysis(workflow_id=18, sample_id=64002)
 ```
 
 ```text
+created: analysis 107644 with sample id(s) 64002
 107644
 ```
-
-(With `verbose=True` the SDK also prints `created: analysis 107644 with sample id(s) 64002`.)
 
 Optional arguments: `project_id`, `control_id` / `control_ids`, `sample_ids`, `params`, `ignore_validation_warnings`, `pipeline_yaml` and `module_yaml` (custom definitions).
 
