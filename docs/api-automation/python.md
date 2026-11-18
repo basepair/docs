@@ -231,7 +231,7 @@ created: sample with id 78477
 78477
 ```
 
-With `verbose=True` you also see each upload step: `Sample id: 78477`, `Creating upload Sample1.lane1.R1.fastq.gz`, `created: upload with id 105490`, and so on.
+With `verbose=True` you also see each upload step: `Creating upload Sample1.lane1.R1.fastq.gz`, `created: upload with id 105490`, `Copying from … to s3://…`, and any `WARNING: transfer attempt 1/6 failed (…); retrying in 3s.` lines while the server-issued temporary credentials activate.
 
 ### 3.2 Update a sample
 
@@ -343,7 +343,8 @@ bp.download_analysis(
 
 The return value is the list of downloaded paths (`None` if nothing matched, `False` on error). With `verbose=True` each file is announced with `Downloading ./<file>` and `Copying from s3 bucket to ./<file>` lines, as in the CLI.
 
-> **Transient 403 errors are normal.** Downloads run `aws s3 cp` with short-lived credentials issued for your account when you connected. They can take a few seconds to activate, so the first attempt may print `Error: b'fatal error: An error occurred (403) when calling the HeadObject operation: Forbidden\n'` and `retrying in 3 seconds.`; the SDK retries and then prints `Succeeded after retry.`. Only a download that fails on every retry is a real permission problem.
+> **Retries are normal and silent by default.** Downloads run `aws s3 cp` with short-lived credentials issued for your account when you connected. They can take a few seconds to activate, so the first attempt often fails; the SDK retries up to four times. With the default `connect()` nothing is printed unless every attempt fails (`ERROR: transfer failed after 4 attempts: 403 on HeadObject`, followed by the raw `aws` output). With `verbose=True` each retry is one line: `WARNING: transfer attempt 1/4 failed (403 on HeadObject); retrying in 3s. …` then `INFO: transfer succeeded on attempt 2/4.`
+> On basepair 3.0–3.7.1 the retries always print as raw `Error: b'fatal error: … (403) … Forbidden\n'` / `Return code: 1` / `retrying in 3 seconds.` / `Succeeded after retry.` lines.
 
 `tags` is a **list of lists**: each inner list is one tag combination, and a file is kept if it matches *any* inner list under the chosen `tagkind`.
 

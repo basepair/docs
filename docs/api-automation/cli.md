@@ -125,13 +125,21 @@ basepair sample create --project 20083 \
 
 ```text
 created: sample with id 78476
-Sample id: 78476
 Creating upload read_1.fastq.gz
-  created: upload with id 138264
+	created: upload with id 138264
 Creating upload read_2.fastq.gz
-  created: upload with id 138265
+	created: upload with id 138265
+Uploading. upload_id: 138264, filepath: read_1.fastq.gz, key: uploads/4453/78476/read_1.fastq.gz
+Copying from read_1.fastq.gz to s3://<bucket>/uploads/4453/78476/read_1.fastq.gz
+WARNING: transfer attempt 1/6 failed (InvalidAccessKeyId on PutObject); retrying in 3s. Temporary credentials can take a few seconds to activate.
+INFO: transfer succeeded on attempt 2/6.
+...
 Sample created successfully.
 ```
+
+The `WARNING … retrying` lines are normal: uploads and downloads run `aws s3 cp` with short-lived credentials the server issues for your account at the start of the command, and those take a few seconds to activate. Only `ERROR: transfer failed after N attempts` means the copy really failed.
+
+> On basepair 3.0–3.7.1 the same retries appear as raw `Error: b'... An error occurred (InvalidAccessKeyId) ...'` / `Return code: 1` / `retrying in 3 seconds.` / `Succeeded after retry.` lines, and a successful upload may end with `ERROR: HTTPSConnectionPool(...): Read timed out.` — the sample is still created. Upgrade to 3.7.2+ for the readable form.
 
 Notes:
 
@@ -324,8 +332,9 @@ All analysis files have been downloaded successfully.
 
 Without `-o`, files land under `./basepair/analyses/<analysis id>/<node>/`. With `-o DIR` they are written directly into `DIR`.
 
-> **Transient 403 errors are normal.** Downloads run `aws s3 cp` with short-lived credentials that the server issues for your account at the start of the command. Those credentials can take a few seconds to become active, so you may see
-> `Error: b'fatal error: An error occurred (403) when calling the HeadObject operation: Forbidden\n'` followed by `retrying in 3 seconds.` once or twice. The CLI retries automatically and prints `Succeeded after retry.` when the copy goes through. Only treat it as a real permission problem if all retries fail.
+> **Retries are normal.** Downloads run `aws s3 cp` with short-lived credentials that the server issues for your account at the start of the command. Those take a few seconds to become active, so the first attempt often fails and you see
+> `WARNING: transfer attempt 1/4 failed (403 on HeadObject); retrying in 3s. Temporary credentials can take a few seconds to activate.` followed by `INFO: transfer succeeded on attempt 2/4.` Only `ERROR: transfer failed after 4 attempts: …` (printed with the raw `aws` output) is a real permission problem.
+> On basepair 3.0–3.7.1 the same retries print as raw `Error: b'fatal error: An error occurred (403) … Forbidden\n'`, `Return code: 1`, `retrying in 3 seconds.`, `Succeeded after retry.`
 
 Download only the deduplicated alignment BAM files (tagged **dedup**):
 
@@ -524,6 +533,12 @@ ERROR: You don't have access to this resource. Invalid or expired token.
 ```
 
 The second one means the `key` in your config's `api_v3` section is wrong or has been revoked — download a fresh config file from your profile page.
+
+```text
+ERROR: request to app.basepairtech.com timed out after 10s (add "timeout": <seconds> to the api config section to allow more time)
+```
+
+The API did not answer within the client timeout (10 s by default). Add `"timeout": 30` next to `host` in the `api_v3` section of your config to wait longer.
 
 **Delete resources** (each id is confirmed interactively with `Are you sure you want to delete <id>?`):
 
