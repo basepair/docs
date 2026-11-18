@@ -52,6 +52,14 @@ INFO: Using Webapp API v2
 
 `bp.version` tells you which API you are connected to. If the config is missing the required section, `connect()` prints a `CONFIG_ERROR:` line and returns `None` — check that before calling methods on `bp`.
 
+**The SDK is quiet by default.** Methods return values (ids, dicts, lists) and only print `INFO:` and `ERROR:` lines. The progress messages the CLI shows (`created: sample with id …`, `deleted sample …`, `Downloading …`) appear only if you connect with `verbose=True`:
+
+```python
+bp = basepair.connect(json.load(open('/path/to/basepair.config.json')), verbose=True)
+```
+
+The outputs on this page show the default (quiet) behaviour.
+
 > **Note:** `version=` requires basepair 3.0 or newer. On an older 2.x install it fails with `TypeError: BpApi.__init__() got an unexpected keyword argument 'version'`; run `pip install --upgrade basepair`.
 
 ---
@@ -182,7 +190,7 @@ analysis['status'], analysis['samples'][0]['id'], len(analysis['files'])
 
 ### 3.1 Create a new sample
 
-Create **Sample1** — paired-end RNA-seq data using the **hg19** genome. The call creates the sample, then uploads each file. It returns the new sample id:
+Create **Sample1** — paired-end RNA-seq data using the **hg19** genome. The call creates the sample, uploads each file, and returns the new sample id:
 
 ```python
 data = {
@@ -207,13 +215,10 @@ bp.create_sample(data=data)
 ```
 
 ```text
-created: sample with id 78477
-Sample id: 78477
-Creating upload Sample1.lane1.R1.fastq.gz
-	created: upload with id 105490
-...
 78477
 ```
+
+With `verbose=True` you also see the progress: `created: sample with id 78477`, `Creating upload Sample1.lane1.R1.fastq.gz`, `created: upload with id 105490`, and so on.
 
 ### 3.2 Update a sample
 
@@ -228,10 +233,10 @@ bp.delete_sample(78477)
 ```
 
 ```text
-deleted sample 78477
+{'error': False}
 ```
 
-Returns the API response on success and `False` on failure.
+Returns `{'error': False}` on success and `False` on failure (after printing an `ERROR:` line). Unlike the CLI, there is no confirmation prompt — the sample is deleted immediately. The `deleted sample 78477` message is only printed with `verbose=True`.
 
 ---
 
@@ -244,9 +249,10 @@ bp.create_analysis(workflow_id=18, sample_id=64002)
 ```
 
 ```text
-created: analysis 107644 with sample id(s) 64002
 107644
 ```
+
+(With `verbose=True` the SDK also prints `created: analysis 107644 with sample id(s) 64002`.)
 
 Optional arguments: `project_id`, `control_id` / `control_ids`, `sample_ids`, `params`, `ignore_validation_warnings`, `pipeline_yaml` and `module_yaml` (custom definitions).
 
@@ -319,12 +325,10 @@ bp.download_analysis(
 ```
 
 ```text
-Downloading ./recent_2274572_8_fastq.fastq.num_lines.txt
-Copying from s3 bucket to  ./recent_2274572_8_fastq.fastq.num_lines.txt
 ['./results/recent_2274572_8_fastq.fastq.num_lines.txt']
 ```
 
-The return value is the list of downloaded paths (`None` if nothing matched, `False` on error).
+The return value is the list of downloaded paths (`None` if nothing matched, `False` on error). With `verbose=True` each file is announced with `Downloading ./<file>` and `Copying from s3 bucket to ./<file>` lines, as in the CLI.
 
 > **Transient 403 errors are normal.** Downloads run `aws s3 cp` with short-lived credentials issued for your account when you connected. They can take a few seconds to activate, so the first attempt may print `Error: b'fatal error: An error occurred (403) when calling the HeadObject operation: Forbidden\n'` and `retrying in 3 seconds.`; the SDK retries and then prints `Succeeded after retry.`. Only a download that fails on every retry is a real permission problem.
 
