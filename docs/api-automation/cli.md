@@ -55,6 +55,7 @@ An outline of the contents on this page:
 4. Downloading results
 5. Managing pipelines and modules
 6. Other commands
+7. Monitoring coupons and users
 
 ---
 
@@ -431,11 +432,55 @@ Create a pipeline from a YAML definition file:
 basepair pipeline create --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
 ```
 
-Update an existing pipeline:
+Every pipeline has one or more **versions** (`PipelineVersion`) — exactly one is marked the *default*, and that's the one analyses run against unless a specific version is requested. `pipeline create` creates the pipeline and its initial default version (`1.0`) together.
+
+### Updating a pipeline in place
+
+`pipeline update` mutates the pipeline and its **default version** directly — it does not create a new version:
 
 ```bash
 basepair pipeline update -u 380 --file /path/to/pipeline.yaml -c /path/to/basepair.config.json
 ```
+
+Since this changes the version every existing analysis already runs against, it's best for small, low-risk fixes. For a bigger change you want to test before it goes live, create a new version instead.
+
+### Creating a new pipeline version
+
+`pipeline_version create` adds a new, **non-default** version to an existing pipeline — it never touches the current default, so nothing changes for existing analyses until you explicitly promote it:
+
+```bash
+basepair pipeline_version create --file /path/to/pipeline_v2.yaml -c /path/to/basepair.config.json
+```
+
+```text
+created: pipeline version 2199 (1.1) for pipeline 380. It is NOT the default version yet -- run 'pipeline update -u 380 --set-default 2199' to promote it when ready.
+```
+
+The pipeline this version belongs to is the `id` field inside the YAML itself — there's no separate pipeline flag. The new version's number is bumped automatically from the pipeline's current default (e.g. `1.0` → `1.1`); you never specify this yourself. If the pipeline has no version yet (legacy data), the new one is created as the default instead.
+
+### Editing an existing version
+
+To edit a specific version's content directly — without forking a new one, and without changing which version is default — use `pipeline_version update` with the version's own ID:
+
+```bash
+basepair pipeline_version update -u 2199 --file /path/to/pipeline_v2_fixed.yaml -c /path/to/basepair.config.json
+```
+
+The YAML is authoritative: any field you omit (`description`, `summary`, `visibility`) is cleared, not left as-is.
+
+### Promoting a version to default
+
+Once you've tested a new version, promote it so analyses start using it:
+
+```bash
+basepair pipeline update -u 380 --set-default 2199 -c /path/to/basepair.config.json
+```
+
+```text
+updated: pipeline version 2199 (1.1) is now the default for pipeline 380.
+```
+
+`-u` must be the pipeline the version actually belongs to — the CLI verifies this and refuses if they don't match, so a typo can't silently promote the wrong pipeline's version.
 
 Create a module:
 
@@ -546,3 +591,55 @@ The API did not answer within the client timeout (10 s by default). Add `"timeou
 basepair analysis delete -u 91182 -c /path/to/basepair.config.json
 basepair sample delete -u 75042 -c /path/to/basepair.config.json
 ```
+
+---
+
+## 7. Monitoring coupons and users
+
+Pull coupon and user status for your host directly, instead of checking the web UI's [Coupons](../admin-guide/coupons) and [Users](../admin-guide/user) pages by hand.
+
+### Listing coupons
+
+List the coupon definitions for your host — name, code, available samples, owner, status, and when the coupon was created:
+
+```bash
+basepair coupon list -c /path/to/basepair.config.json
+```
+
+```text
+  id  name     code      available samples  owner                status    created on
+----  -------  ------  --------------------  -------------------  --------  ---------------------------
+3402  Promo25  ZPi2XF                     1  owner@example.com    expired   2026-10-22T05:22:22.947831Z
+```
+
+Look up a single coupon by id:
+
+```bash
+basepair coupon get -u 3402 -c /path/to/basepair.config.json
+```
+
+This returns fewer columns than `list` (no `owner` or `created on`) — the API's single-coupon endpoint returns a smaller set of fields than the list endpoint does.
+
+### Listing the coupons issued to a user
+
+Pass `--user` with a user id to see that user's coupons instead of your host's coupon definitions — their status, remaining samples, and activation timestamp:
+
+```bash
+basepair coupon list --user 6075 -c /path/to/basepair.config.json
+```
+
+```text
+     id  coupon    available samples  status     expire at             activated on    notified
+-------  -------  --------------------  ---------  --------------------  --------------  ----------
+4144226  Promo25                     1  expired    2026-10-15T18:30:00Z                  False
+```
+
+`--user` is required for this view — without it, the underlying endpoint has no way to scope results to your host and would return every user's coupons on the platform. The user is implicit from the id you passed in; this view doesn't repeat it as a column. There's no issuance timestamp here either — use the coupon's own `created on` from `coupon list` for that.
+
+### Listing users
+
+```bash
+basepair user list -c /path/to/basepair.config.json
+```
+
+> **Note:** this currently only returns your own account's record, not your full host's member list, regardless of your role. If you need the full list, use the web UI's [Users](../admin-guide/user) page for now.
